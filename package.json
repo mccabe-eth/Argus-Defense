@@ -1,0 +1,24 @@
+{
+  "name": "argus-defense",
+  "version": "1.0.0",
+  "description": "ETHOnline Hackathon 2025",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mccabe-eth/Argus-Defense.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mccabe-eth/Argus-Defense/issues"
+  },
+  "homepage": "https://github.com/mccabe-eth/Argus-Defense#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "socket.io": "^4.8.1"
+  }
+}
