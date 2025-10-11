@@ -10,14 +10,14 @@ git clone https://github.com/mccabe-eth/Argus-Defense.git
 cd Argus-Defense
 ```
 
-2. Run Setup Script
+### 2. Run Setup Script
 macOS / Linux
 ```bash
 chmod +x setup.sh
 ./setup.sh
 ```
 
-🪟 Windows (PowerShell)
+Windows (PowerShell)
 ```bash
 Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 ./setup.ps1
@@ -31,7 +31,7 @@ Install all Python dependencies from requirements.txt
 
 Install all Node.js dependencies from package.json
 
-3. Verify Installation
+### 3. Verify Installation
 Check Python Environment
 
 Make sure your virtual environment is active:
@@ -62,7 +62,7 @@ Confirm packages installed correctly:
 npm list --depth=0
 ```
 
-4. Run the Project
+### 4. Run the Project
 
 If your project includes a Python backend:
 ```bash
@@ -76,7 +76,7 @@ npm start
 
 Both should start without errors.
 
-5. Verify Everything is Working
+### 5. Verify Everything is Working
 
 No errors or missing module warnings in the terminal.
 
@@ -84,7 +84,7 @@ Both Python and Node servers (if applicable) start correctly.
 
 venv/ and node_modules/ exist locally but are not committed (check .gitignore).
 
-6. Deactivate and Cleanup
+### 6. Deactivate and Cleanup
 
 When finished:
 ```bash
