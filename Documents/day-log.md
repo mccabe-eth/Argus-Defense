@@ -1,4 +1,4 @@
-### Hackathon Progress Documenting
+### Hackathon Daily Log
 
 <br>
 
