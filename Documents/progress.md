@@ -15,3 +15,8 @@ Installed Node.js, Python, and associated dependencies
 Learned: Node.js and Python can coexist cleanly within one repo
 
 Next: Document architecture + clarify how the alert-to-proof pipeline works
+
+<br>
+
+**Day 2**
+
