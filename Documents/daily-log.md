@@ -4,7 +4,7 @@
 
 **Day 1**
 
-Worked on environment setup
+Environment setup
 
 Initialized and structured repo
 
@@ -18,5 +18,22 @@ Next: Document architecture + clarify how the alert-to-proof pipeline works
 
 <br>
 
-**Day 2**
+**Days 2-4**
 
+Configured Frontend
+
+Troubleshooted Node version
+
+Installed and set up Vite + Vue 
+
+<br>
+
+**Day 5**
+
+Configured Database 
+
+Connect
+
+<br>
+
+**Day 5**
