@@ -145,3 +145,36 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+
+# Node dependencies
+node_modules/
+.yarn/cache/
+.yarn/unplugged/
+.yarn/install-state.gz
+.pnp.*
+
+# Hardhat build artifacts
+backend/artifacts/
+backend/cache/
+backend/deployments/
+backend/typechain-types/
+
+# Generated frontend contract files
+frontend/nextjs/contracts/
+
+# Chain data (local blockchain state)
+backend/.chainId
+backend/.hardhat/
+backend/hardhat-network-fork/
+backend/hardhat-network-helpers/
+
+# Temporary or environment files
+.env
+.env.local
+.env.*.local
+
+# IDE and system junk
+.vscode/
+.DS_Store
+*.log
