@@ -14,7 +14,7 @@ cd Argus-Defense
 macOS / Linux
 ```bash
 chmod +x setup.sh
-./setup.sh
+source setup.sh
 ```
 
 Windows (PowerShell)
@@ -51,27 +51,36 @@ pip list
 
 Check Node.js Environment
 
-Verify Node.js and npm versions:
+Verify Node.js version:
 ```bash
 node -v
-npm -v
 ```
 
 Confirm packages installed correctly:
 ```bash
-npm list --depth=0
+yarn info --name-only
 ```
 
 ### 4. Run the Project
 
+Run:
+```bash
+yarn chain
+```
+
+Open new terminal and run:
+```bash
+yarn deploy
+```
+
+Open new terminal and run:
+```bash
+yarn start
+```
+
 If your project includes a Python backend:
 ```bash
 python app.py
-```
-
-If it includes a Node.js frontend:
-```bash
-npm start
 ```
 
 Both should start without errors.
