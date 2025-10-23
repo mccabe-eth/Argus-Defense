@@ -178,3 +178,4 @@ backend/hardhat-network-helpers/
 .vscode/
 .DS_Store
 *.log
+backend/sdr/__pycache__
