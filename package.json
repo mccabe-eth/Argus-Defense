@@ -15,6 +15,7 @@
     "account:generate": "yarn workspace argus-defense-backend account:generate",
     "account:import": "yarn workspace argus-defense-backend account:import",
     "account:reveal-pk": "yarn workspace argus-defense-backend account:reveal-pk",
+    "api": "yarn workspace argus-defense-backend api",
     "chain": "yarn backend:chain",
     "compile": "yarn backend:compile",
     "deploy": "yarn backend:deploy",
