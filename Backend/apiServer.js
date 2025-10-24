@@ -23,7 +23,7 @@ const activeListeners = new Map();
  */
 async function loadStreamsData() {
   try {
-    const dataPath = path.join(__dirname, '../Assets/example_streams_with_wallets.json');
+    const dataPath = path.join(__dirname, 'openmhz/streams.json');
     const data = await fs.readFile(dataPath, 'utf-8');
     return JSON.parse(data);
   } catch (error) {

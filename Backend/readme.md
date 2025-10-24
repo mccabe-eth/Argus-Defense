@@ -1,1 +1,1 @@
-Smart contracts store proofs, trigger payments, and act as the trust layer.
+This service ingests alerts, processes data, and routes valid ones for verification.

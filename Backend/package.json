@@ -21,7 +21,8 @@
     "lint": "eslint",
     "lint-staged": "eslint",
     "test": "REPORT_GAS=true hardhat test --network hardhat",
-    "verify": "hardhat etherscan-verify"
+    "verify": "hardhat etherscan-verify",
+    "websocket": "node openmhz/openmhzServer.js"
   },
   "devDependencies": {
     "@ethersproject/abi": "^5.7.0",

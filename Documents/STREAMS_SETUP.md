@@ -87,16 +87,16 @@ This tells the frontend where to find the API server.
 
 ### 3. Generate Stream Data (Optional)
 
-The example data is already available in `Assets/example_streams_with_wallets.json`.
+The example data is already available in `Backend/openmhz/example_streams_with_wallets.json`.
 
 To regenerate with fresh data from OpenMHz:
 
 ```bash
-cd Backend/sdr
+cd Backend/openmhz
 python3 ingest_openmhz.py
 ```
 
-This will update `Assets/example_streams_with_wallets.json` with the latest stream data.
+This will update `Backend/openmhz/example_streams_with_wallets.json` with the latest stream data.
 
 ## Running the System
 
@@ -250,18 +250,20 @@ The main landing page now includes a new "Radio Streams" card that links to `/st
 
 ```
 Argus-Defense/
-├── Assets/
-│   └── example_streams_with_wallets.json  # Generated stream data
 ├── Backend/
-│   ├── apiServer.js                       # NEW: Express API server
-│   ├── package.json                       # Updated with express, cors
+│   ├── apiServer.js                         # Express API server for REST endpoints
+│   ├── package.json                         # Updated with express, cors
+│   ├── openmhz/
+│   │   ├── example_streams_with_wallets.json # Generated stream data
+│   │   ├── ingest_openmhz.py                # Python script to fetch OpenMHz data
+│   │   └── streamServer_openmhz.js          # WebSocket server (merged, simplified)
 │   └── sdr/
-│       └── ingest_openmhz.py             # Generates stream data
+│       └── sim-capture.py                   # Local SDR simulation
 └── Frontend/nextjs/
     └── app/
-        ├── page.tsx                       # Updated with streams link
+        ├── page.tsx                         # Updated with streams link
         └── streams/
-            └── page.tsx                   # NEW: Streams UI page
+            └── page.tsx                     # Streams UI page
 ```
 
 ## Testing

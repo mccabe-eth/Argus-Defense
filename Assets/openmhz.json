@@ -1,0 +1,1280 @@
+{
+  "calls": [
+    {
+      "_id": "68fa88e2d698754e6bf1a497",
+      "talkgroupNum": 729,
+      "url": "https://media.openmhz.com/media/dcfd/729/dcfd-729-1761249499.m4a",
+      "filename": "/dcfd/2025/10/23/729-1761249499.m4a",
+      "time": "2025-10-23T19:58:19.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1109037",
+          "_id": "68fa88e2d698754e6bf1a498"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 854862500,
+      "patches": [null],
+      "len": 3
+    },
+    {
+      "_id": "68fa88ebd698754e6bf1b498",
+      "talkgroupNum": 2237,
+      "url": "https://media.openmhz.com/media/dcfd/2237/dcfd-2237-1761249501.m4a",
+      "filename": "/dcfd/2025/10/23/2237-1761249501.m4a",
+      "time": "2025-10-23T19:58:21.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1114979",
+          "_id": "68fa88ebd698754e6bf1b499"
+        },
+        {
+          "pos": 1.8,
+          "src": "1115010",
+          "_id": "68fa88ebd698754e6bf1b49a"
+        },
+        {
+          "pos": 3.06,
+          "src": "1114995",
+          "_id": "68fa88ebd698754e6bf1b49b"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 856587500,
+      "patches": [],
+      "len": 6
+    },
+    {
+      "_id": "68fa88f4d698754e6bf1c840",
+      "talkgroupNum": 728,
+      "url": "https://media.openmhz.com/media/dcfd/728/dcfd-728-1761249507.m4a",
+      "filename": "/dcfd/2025/10/23/728-1761249507.m4a",
+      "time": "2025-10-23T19:58:27.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1118990",
+          "_id": "68fa88f4d698754e6bf1c841"
+        },
+        {
+          "pos": 4.32,
+          "src": "1116712",
+          "_id": "68fa88f4d698754e6bf1c842"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 859037500,
+      "patches": [null],
+      "len": 11
+    },
+    {
+      "_id": "68fa88f4d698754e6bf1c855",
+      "talkgroupNum": 729,
+      "url": "https://media.openmhz.com/media/dcfd/729/dcfd-729-1761249513.m4a",
+      "filename": "/dcfd/2025/10/23/729-1761249513.m4a",
+      "time": "2025-10-23T19:58:33.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1102470",
+          "_id": "68fa88f4d698754e6bf1c856"
+        },
+        {
+          "pos": 3.96,
+          "src": "1109037",
+          "_id": "68fa88f4d698754e6bf1c857"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 854862500,
+      "patches": [],
+      "len": 6
+    },
+    {
+      "_id": "68fa88f3d698754e6bf1c566",
+      "talkgroupNum": 2237,
+      "url": "https://media.openmhz.com/media/dcfd/2237/dcfd-2237-1761249517.m4a",
+      "filename": "/dcfd/2025/10/23/2237-1761249517.m4a",
+      "time": "2025-10-23T19:58:37.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1115010",
+          "_id": "68fa88f3d698754e6bf1c567"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 858587500,
+      "patches": [null],
+      "len": 1
+    },
+    {
+      "_id": "68fa8902d698754e6bf1dc88",
+      "talkgroupNum": 101,
+      "url": "https://media.openmhz.com/media/dcfd/101/dcfd-101-1761249526.m4a",
+      "filename": "/dcfd/2025/10/23/101-1761249526.m4a",
+      "time": "2025-10-23T19:58:46.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1116736",
+          "_id": "68fa8902d698754e6bf1dc89"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 860987500,
+      "patches": [null],
+      "len": 7
+    },
+    {
+      "_id": "68fa8910d698754e6bf1f6e1",
+      "talkgroupNum": 728,
+      "url": "https://media.openmhz.com/media/dcfd/728/dcfd-728-1761249530.m4a",
+      "filename": "/dcfd/2025/10/23/728-1761249530.m4a",
+      "time": "2025-10-23T19:58:50.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1102500",
+          "_id": "68fa8910d698754e6bf1f6e2"
+        },
+        {
+          "pos": 2.34,
+          "src": "1116712",
+          "_id": "68fa8910d698754e6bf1f6e3"
+        },
+        {
+          "pos": 3.6,
+          "src": "1102500",
+          "_id": "68fa8910d698754e6bf1f6e4"
+        },
+        {
+          "pos": 12.24,
+          "src": "1116712",
+          "_id": "68fa8910d698754e6bf1f6e5"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 857587500,
+      "patches": [null],
+      "len": 14
+    },
+    {
+      "_id": "68fa890bd698754e6bf1ef95",
+      "talkgroupNum": 729,
+      "url": "https://media.openmhz.com/media/dcfd/729/dcfd-729-1761249536.m4a",
+      "filename": "/dcfd/2025/10/23/729-1761249536.m4a",
+      "time": "2025-10-23T19:58:56.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1119822",
+          "_id": "68fa890bd698754e6bf1ef96"
+        },
+        {
+          "pos": 2.7,
+          "src": "1109037",
+          "_id": "68fa890bd698754e6bf1ef97"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 860987500,
+      "patches": [null],
+      "len": 4
+    },
+    {
+      "_id": "68fa890bd698754e6bf1ef8f",
+      "talkgroupNum": 2237,
+      "url": "https://media.openmhz.com/media/dcfd/2237/dcfd-2237-1761249540.m4a",
+      "filename": "/dcfd/2025/10/23/2237-1761249540.m4a",
+      "time": "2025-10-23T19:59:00.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1114993",
+          "_id": "68fa890bd698754e6bf1ef90"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 859037500,
+      "patches": [null],
+      "len": 3
+    },
+    {
+      "_id": "68fa8921d698754e6bf21c2b",
+      "talkgroupNum": 101,
+      "url": "https://media.openmhz.com/media/dcfd/101/dcfd-101-1761249544.m4a",
+      "filename": "/dcfd/2025/10/23/101-1761249544.m4a",
+      "time": "2025-10-23T19:59:04.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1116708",
+          "_id": "68fa8921d698754e6bf21c2c"
+        },
+        {
+          "pos": 1.08,
+          "src": "-1",
+          "_id": "68fa8921d698754e6bf21c2d"
+        },
+        {
+          "pos": 1.98,
+          "src": "1116708",
+          "_id": "68fa8921d698754e6bf21c2e"
+        },
+        {
+          "pos": 4.5,
+          "src": "1116708",
+          "_id": "68fa8921d698754e6bf21c2f"
+        },
+        {
+          "pos": 7.2,
+          "src": "1116708",
+          "_id": "68fa8921d698754e6bf21c30"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 857187500,
+      "patches": [null],
+      "len": 16
+    },
+    {
+      "_id": "68fa8916d698754e6bf2037b",
+      "talkgroupNum": 729,
+      "url": "https://media.openmhz.com/media/dcfd/729/dcfd-729-1761249548.m4a",
+      "filename": "/dcfd/2025/10/23/729-1761249548.m4a",
+      "time": "2025-10-23T19:59:08.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1119822",
+          "_id": "68fa8916d698754e6bf2037c"
+        },
+        {
+          "pos": 1.98,
+          "src": "1109037",
+          "_id": "68fa8916d698754e6bf2037d"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 860987500,
+      "patches": [null],
+      "len": 4
+    },
+    {
+      "_id": "68fa8912d698754e6bf1fcde",
+      "talkgroupNum": 2237,
+      "url": "https://media.openmhz.com/media/dcfd/2237/dcfd-2237-1761249548.m4a",
+      "filename": "/dcfd/2025/10/23/2237-1761249548.m4a",
+      "time": "2025-10-23T19:59:08.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1115010",
+          "_id": "68fa8912d698754e6bf1fcdf"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 859037500,
+      "patches": [null],
+      "len": 1
+    },
+    {
+      "_id": "68fa8930d698754e6bf23bfd",
+      "talkgroupNum": 728,
+      "url": "https://media.openmhz.com/media/dcfd/728/dcfd-728-1761249572.m4a",
+      "filename": "/dcfd/2025/10/23/728-1761249572.m4a",
+      "time": "2025-10-23T19:59:32.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1102446",
+          "_id": "68fa8930d698754e6bf23bfe"
+        },
+        {
+          "pos": 1.26,
+          "src": "1116712",
+          "_id": "68fa8930d698754e6bf23bff"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 858587500,
+      "patches": [null],
+      "len": 4
+    },
+    {
+      "_id": "68fa894ad698754e6bf271f1",
+      "talkgroupNum": 729,
+      "url": "https://media.openmhz.com/media/dcfd/729/dcfd-729-1761249578.m4a",
+      "filename": "/dcfd/2025/10/23/729-1761249578.m4a",
+      "time": "2025-10-23T19:59:38.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1109037",
+          "_id": "68fa894ad698754e6bf271f2"
+        },
+        {
+          "pos": 10.62,
+          "src": "1119095",
+          "_id": "68fa894ad698754e6bf271f3"
+        },
+        {
+          "pos": 15.66,
+          "src": "1102439",
+          "_id": "68fa894ad698754e6bf271f4"
+        },
+        {
+          "pos": 21.42,
+          "src": "1109037",
+          "_id": "68fa894ad698754e6bf271f5"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 857187500,
+      "patches": [null],
+      "len": 22
+    },
+    {
+      "_id": "68fa893dd698754e6bf2557d",
+      "talkgroupNum": 728,
+      "url": "https://media.openmhz.com/media/dcfd/728/dcfd-728-1761249584.m4a",
+      "filename": "/dcfd/2025/10/23/728-1761249584.m4a",
+      "time": "2025-10-23T19:59:44.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1102446",
+          "_id": "68fa893dd698754e6bf2557e"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 856587500,
+      "patches": [],
+      "len": 8
+    },
+    {
+      "_id": "68fa894cd698754e6bf27819",
+      "talkgroupNum": 101,
+      "url": "https://media.openmhz.com/media/dcfd/101/dcfd-101-1761249589.m4a",
+      "filename": "/dcfd/2025/10/23/101-1761249589.m4a",
+      "time": "2025-10-23T19:59:49.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1116708",
+          "_id": "68fa894cd698754e6bf2781a"
+        },
+        {
+          "pos": 0.72,
+          "src": "1116708",
+          "_id": "68fa894cd698754e6bf2781b"
+        },
+        {
+          "pos": 5.76,
+          "src": "1116708",
+          "_id": "68fa894cd698754e6bf2781c"
+        },
+        {
+          "pos": 11.52,
+          "src": "1116708",
+          "_id": "68fa894cd698754e6bf2781d"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 860987500,
+      "patches": [null],
+      "len": 17
+    },
+    {
+      "_id": "68fa893fd698754e6bf25a46",
+      "talkgroupNum": 102,
+      "url": "https://media.openmhz.com/media/dcfd/102/dcfd-102-1761249591.m4a",
+      "filename": "/dcfd/2025/10/23/102-1761249591.m4a",
+      "time": "2025-10-23T19:59:51.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1116774",
+          "_id": "68fa893fd698754e6bf25a47"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 858987500,
+      "patches": [null],
+      "len": 3
+    },
+    {
+      "_id": "68fa8945d698754e6bf267c6",
+      "talkgroupNum": 728,
+      "url": "https://media.openmhz.com/media/dcfd/728/dcfd-728-1761249597.m4a",
+      "filename": "/dcfd/2025/10/23/728-1761249597.m4a",
+      "time": "2025-10-23T19:59:57.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1116712",
+          "_id": "68fa8945d698754e6bf267c7"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 856587500,
+      "patches": [null],
+      "len": 3
+    },
+    {
+      "_id": "68fa895ed698754e6bf2a3d9",
+      "talkgroupNum": 1039,
+      "url": "https://media.openmhz.com/media/dcfd/1039/dcfd-1039-1761249599.m4a",
+      "filename": "/dcfd/2025/10/23/1039-1761249599.m4a",
+      "time": "2025-10-23T19:59:59.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1116729",
+          "_id": "68fa895ed698754e6bf2a3da"
+        },
+        {
+          "pos": 1.44,
+          "src": "1116729",
+          "_id": "68fa895ed698754e6bf2a3db"
+        },
+        {
+          "pos": 5.4,
+          "src": "1113718",
+          "_id": "68fa895ed698754e6bf2a3dc"
+        },
+        {
+          "pos": 7.56,
+          "src": "1116729",
+          "_id": "68fa895ed698754e6bf2a3dd"
+        },
+        {
+          "pos": 17.46,
+          "src": "-1",
+          "_id": "68fa895ed698754e6bf2a3de"
+        },
+        {
+          "pos": 18.18,
+          "src": "1116729",
+          "_id": "68fa895ed698754e6bf2a3df"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 854862500,
+      "patches": [null],
+      "len": 19
+    },
+    {
+      "_id": "68fa8979d698754e6bf2e266",
+      "talkgroupNum": 102,
+      "url": "https://media.openmhz.com/media/dcfd/102/dcfd-102-1761249638.m4a",
+      "filename": "/dcfd/2025/10/23/102-1761249638.m4a",
+      "time": "2025-10-23T20:00:38.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1118948",
+          "_id": "68fa8979d698754e6bf2e267"
+        },
+        {
+          "pos": 10.98,
+          "src": "1116774",
+          "_id": "68fa8979d698754e6bf2e268"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 857587500,
+      "patches": [null],
+      "len": 13
+    },
+    {
+      "_id": "68fa899ad698754e6bf32896",
+      "talkgroupNum": 101,
+      "url": "https://media.openmhz.com/media/dcfd/101/dcfd-101-1761249662.m4a",
+      "filename": "/dcfd/2025/10/23/101-1761249662.m4a",
+      "time": "2025-10-23T20:01:02.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1116708",
+          "_id": "68fa899ad698754e6bf32897"
+        },
+        {
+          "pos": 0.72,
+          "src": "1116708",
+          "_id": "68fa899ad698754e6bf32898"
+        },
+        {
+          "pos": 5.4,
+          "src": "1116708",
+          "_id": "68fa899ad698754e6bf32899"
+        },
+        {
+          "pos": 6.84,
+          "src": "1116708",
+          "_id": "68fa899ad698754e6bf3289a"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 857587500,
+      "patches": [null],
+      "len": 17
+    },
+    {
+      "_id": "68fa898ed698754e6bf30c06",
+      "talkgroupNum": 728,
+      "url": "https://media.openmhz.com/media/dcfd/728/dcfd-728-1761249673.m4a",
+      "filename": "/dcfd/2025/10/23/728-1761249673.m4a",
+      "time": "2025-10-23T20:01:13.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1116746",
+          "_id": "68fa898ed698754e6bf30c07"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 857187500,
+      "patches": [null],
+      "len": 1
+    },
+    {
+      "_id": "68fa89a8d698754e6bf34bcb",
+      "talkgroupNum": 2237,
+      "url": "https://media.openmhz.com/media/dcfd/2237/dcfd-2237-1761249697.m4a",
+      "filename": "/dcfd/2025/10/23/2237-1761249697.m4a",
+      "time": "2025-10-23T20:01:37.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1114979",
+          "_id": "68fa89a8d698754e6bf34bcc"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 857187500,
+      "patches": [null],
+      "len": 2
+    },
+    {
+      "_id": "68fa89cbd698754e6bf3871b",
+      "talkgroupNum": 101,
+      "url": "https://media.openmhz.com/media/dcfd/101/dcfd-101-1761249717.m4a",
+      "filename": "/dcfd/2025/10/23/101-1761249717.m4a",
+      "time": "2025-10-23T20:01:57.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1116708",
+          "_id": "68fa89cbd698754e6bf3871c"
+        },
+        {
+          "pos": 0.9,
+          "src": "1116708",
+          "_id": "68fa89cbd698754e6bf3871d"
+        },
+        {
+          "pos": 7.2,
+          "src": "1116708",
+          "_id": "68fa89cbd698754e6bf3871e"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 857187500,
+      "patches": [],
+      "len": 15
+    },
+    {
+      "_id": "68fa89c6d698754e6bf37fb1",
+      "talkgroupNum": 728,
+      "url": "https://media.openmhz.com/media/dcfd/728/dcfd-728-1761249720.m4a",
+      "filename": "/dcfd/2025/10/23/728-1761249720.m4a",
+      "time": "2025-10-23T20:02:00.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1102183",
+          "_id": "68fa89c6d698754e6bf37fb2"
+        },
+        {
+          "pos": 4.14,
+          "src": "1102485",
+          "_id": "68fa89c6d698754e6bf37fb3"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 857587500,
+      "patches": [null],
+      "len": 6
+    },
+    {
+      "_id": "68fa89c1d698754e6bf37993",
+      "talkgroupNum": 1039,
+      "url": "https://media.openmhz.com/media/dcfd/1039/dcfd-1039-1761249722.m4a",
+      "filename": "/dcfd/2025/10/23/1039-1761249722.m4a",
+      "time": "2025-10-23T20:02:02.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1113971",
+          "_id": "68fa89c1d698754e6bf37994"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 855212500,
+      "patches": [],
+      "len": 1
+    },
+    {
+      "_id": "68fa89cbd698754e6bf38707",
+      "talkgroupNum": 1039,
+      "url": "https://media.openmhz.com/media/dcfd/1039/dcfd-1039-1761249726.m4a",
+      "filename": "/dcfd/2025/10/23/1039-1761249726.m4a",
+      "time": "2025-10-23T20:02:06.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1116729",
+          "_id": "68fa89cbd698754e6bf38708"
+        },
+        {
+          "pos": 1.8,
+          "src": "1113971",
+          "_id": "68fa89cbd698754e6bf38709"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 856987500,
+      "patches": [null],
+      "len": 5
+    },
+    {
+      "_id": "68fa89dbd698754e6bf3a979",
+      "talkgroupNum": 1039,
+      "url": "https://media.openmhz.com/media/dcfd/1039/dcfd-1039-1761249739.m4a",
+      "filename": "/dcfd/2025/10/23/1039-1761249739.m4a",
+      "time": "2025-10-23T20:02:19.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1116729",
+          "_id": "68fa89dbd698754e6bf3a97a"
+        },
+        {
+          "pos": 0.72,
+          "src": "1113971",
+          "_id": "68fa89dbd698754e6bf3a97b"
+        },
+        {
+          "pos": 4.5,
+          "src": "1116729",
+          "_id": "68fa89dbd698754e6bf3a97c"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 860987500,
+      "patches": [null],
+      "len": 8
+    },
+    {
+      "_id": "68fa89d7d698754e6bf3a166",
+      "talkgroupNum": 101,
+      "url": "https://media.openmhz.com/media/dcfd/101/dcfd-101-1761249741.m4a",
+      "filename": "/dcfd/2025/10/23/101-1761249741.m4a",
+      "time": "2025-10-23T20:02:21.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1116708",
+          "_id": "68fa89d7d698754e6bf3a167"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 857187500,
+      "patches": [null],
+      "len": 5
+    },
+    {
+      "_id": "68fa89e1d698754e6bf3b428",
+      "talkgroupNum": 1039,
+      "url": "https://media.openmhz.com/media/dcfd/1039/dcfd-1039-1761249754.m4a",
+      "filename": "/dcfd/2025/10/23/1039-1761249754.m4a",
+      "time": "2025-10-23T20:02:34.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1113971",
+          "_id": "68fa89e1d698754e6bf3b429"
+        },
+        {
+          "pos": 0.9,
+          "src": "1116729",
+          "_id": "68fa89e1d698754e6bf3b42a"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 857187500,
+      "patches": [null],
+      "len": 2
+    },
+    {
+      "_id": "68fa89f7d698754e6bf3e3a0",
+      "talkgroupNum": 728,
+      "url": "https://media.openmhz.com/media/dcfd/728/dcfd-728-1761249770.m4a",
+      "filename": "/dcfd/2025/10/23/728-1761249770.m4a",
+      "time": "2025-10-23T20:02:50.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1119345",
+          "_id": "68fa89f7d698754e6bf3e3a1"
+        },
+        {
+          "pos": 1.62,
+          "src": "1102106",
+          "_id": "68fa89f7d698754e6bf3e3a2"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 859037500,
+      "patches": [null],
+      "len": 4
+    },
+    {
+      "_id": "68fa8a0cd698754e6bf4162f",
+      "talkgroupNum": 1039,
+      "url": "https://media.openmhz.com/media/dcfd/1039/dcfd-1039-1761249778.m4a",
+      "filename": "/dcfd/2025/10/23/1039-1761249778.m4a",
+      "time": "2025-10-23T20:02:58.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1116729",
+          "_id": "68fa8a0cd698754e6bf41630"
+        },
+        {
+          "pos": 12.6,
+          "src": "1113971",
+          "_id": "68fa8a0cd698754e6bf41631"
+        },
+        {
+          "pos": 13.14,
+          "src": "1116729",
+          "_id": "68fa8a0cd698754e6bf41632"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 860987500,
+      "patches": [null],
+      "len": 20
+    },
+    {
+      "_id": "68fa8a15d698754e6bf425cb",
+      "talkgroupNum": 101,
+      "url": "https://media.openmhz.com/media/dcfd/101/dcfd-101-1761249784.m4a",
+      "filename": "/dcfd/2025/10/23/101-1761249784.m4a",
+      "time": "2025-10-23T20:03:04.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1116708",
+          "_id": "68fa8a15d698754e6bf425cc"
+        },
+        {
+          "pos": 0.9,
+          "src": "1116708",
+          "_id": "68fa8a15d698754e6bf425cd"
+        },
+        {
+          "pos": 7.56,
+          "src": "1116708",
+          "_id": "68fa8a15d698754e6bf425ce"
+        },
+        {
+          "pos": 10.26,
+          "src": "1116708",
+          "_id": "68fa8a15d698754e6bf425cf"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 859037500,
+      "patches": [null],
+      "len": 19
+    },
+    {
+      "_id": "68fa8a34d698754e6bf46192",
+      "talkgroupNum": 717,
+      "url": "https://media.openmhz.com/media/dcfd/717/dcfd-717-1761249786.m4a",
+      "filename": "/dcfd/2025/10/23/717-1761249786.m4a",
+      "time": "2025-10-23T20:03:06.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "-1",
+          "_id": "68fa8a34d698754e6bf46193"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 857187500,
+      "patches": [null],
+      "len": 0
+    },
+    {
+      "_id": "68fa8a1fd698754e6bf436bb",
+      "talkgroupNum": 729,
+      "url": "https://media.openmhz.com/media/dcfd/729/dcfd-729-1761249815.m4a",
+      "filename": "/dcfd/2025/10/23/729-1761249815.m4a",
+      "time": "2025-10-23T20:03:35.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1119550",
+          "_id": "68fa8a1fd698754e6bf436bc"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 858587500,
+      "patches": [null],
+      "len": 4
+    },
+    {
+      "_id": "68fa8a24d698754e6bf43ff2",
+      "talkgroupNum": 729,
+      "url": "https://media.openmhz.com/media/dcfd/729/dcfd-729-1761249821.m4a",
+      "filename": "/dcfd/2025/10/23/729-1761249821.m4a",
+      "time": "2025-10-23T20:03:41.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1109037",
+          "_id": "68fa8a24d698754e6bf43ff3"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 859037500,
+      "patches": [null],
+      "len": 2
+    },
+    {
+      "_id": "68fa8a42d698754e6bf47cbb",
+      "talkgroupNum": 101,
+      "url": "https://media.openmhz.com/media/dcfd/101/dcfd-101-1761249833.m4a",
+      "filename": "/dcfd/2025/10/23/101-1761249833.m4a",
+      "time": "2025-10-23T20:03:53.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1116708",
+          "_id": "68fa8a42d698754e6bf47cbc"
+        },
+        {
+          "pos": 0.9,
+          "src": "1116708",
+          "_id": "68fa8a42d698754e6bf47cbd"
+        },
+        {
+          "pos": 7.02,
+          "src": "1116708",
+          "_id": "68fa8a42d698754e6bf47cbe"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 859037500,
+      "patches": [null],
+      "len": 19
+    },
+    {
+      "_id": "68fa8a3ad698754e6bf46ee5",
+      "talkgroupNum": 729,
+      "url": "https://media.openmhz.com/media/dcfd/729/dcfd-729-1761249833.m4a",
+      "filename": "/dcfd/2025/10/23/729-1761249833.m4a",
+      "time": "2025-10-23T20:03:53.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1109037",
+          "_id": "68fa8a3ad698754e6bf46ee6"
+        },
+        {
+          "pos": 0.18,
+          "src": "1109037",
+          "_id": "68fa8a3ad698754e6bf46ee7"
+        },
+        {
+          "pos": 2.88,
+          "src": "1119550",
+          "_id": "68fa8a3ad698754e6bf46ee8"
+        },
+        {
+          "pos": 3.42,
+          "src": "1119550",
+          "_id": "68fa8a3ad698754e6bf46ee9"
+        },
+        {
+          "pos": 4.86,
+          "src": "1109037",
+          "_id": "68fa8a3ad698754e6bf46eea"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 860987500,
+      "patches": [null],
+      "len": 6
+    },
+    {
+      "_id": "68fa8a38d698754e6bf46a44",
+      "talkgroupNum": 2237,
+      "url": "https://media.openmhz.com/media/dcfd/2237/dcfd-2237-1761249840.m4a",
+      "filename": "/dcfd/2025/10/23/2237-1761249840.m4a",
+      "time": "2025-10-23T20:04:00.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1114993",
+          "_id": "68fa8a38d698754e6bf46a45"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 856987500,
+      "patches": [null],
+      "len": 3
+    },
+    {
+      "_id": "68fa8a3fd698754e6bf47733",
+      "talkgroupNum": 2237,
+      "url": "https://media.openmhz.com/media/dcfd/2237/dcfd-2237-1761249847.m4a",
+      "filename": "/dcfd/2025/10/23/2237-1761249847.m4a",
+      "time": "2025-10-23T20:04:07.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1115010",
+          "_id": "68fa8a3fd698754e6bf47734"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 858587500,
+      "patches": [null],
+      "len": 3
+    },
+    {
+      "_id": "68fa8a42d698754e6bf47ca6",
+      "talkgroupNum": 1039,
+      "url": "https://media.openmhz.com/media/dcfd/1039/dcfd-1039-1761249850.m4a",
+      "filename": "/dcfd/2025/10/23/1039-1761249850.m4a",
+      "time": "2025-10-23T20:04:10.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1116729",
+          "_id": "68fa8a42d698754e6bf47ca7"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 860987500,
+      "patches": [null],
+      "len": 3
+    },
+    {
+      "_id": "68fa8a52d698754e6bf4a3bf",
+      "talkgroupNum": 1039,
+      "url": "https://media.openmhz.com/media/dcfd/1039/dcfd-1039-1761249862.m4a",
+      "filename": "/dcfd/2025/10/23/1039-1761249862.m4a",
+      "time": "2025-10-23T20:04:22.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1116729",
+          "_id": "68fa8a52d698754e6bf4a3c0"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 857187500,
+      "patches": [null],
+      "len": 7
+    },
+    {
+      "_id": "68fa8a61d698754e6bf4c45f",
+      "talkgroupNum": 1535,
+      "url": "https://media.openmhz.com/media/dcfd/1535/dcfd-1535-1761249873.m4a",
+      "filename": "/dcfd/2025/10/23/1535-1761249873.m4a",
+      "time": "2025-10-23T20:04:33.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "-1",
+          "_id": "68fa8a61d698754e6bf4c460"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 858587500,
+      "patches": [null],
+      "len": 0
+    },
+    {
+      "_id": "68fa8a64d698754e6bf4ca57",
+      "talkgroupNum": 1039,
+      "url": "https://media.openmhz.com/media/dcfd/1039/dcfd-1039-1761249876.m4a",
+      "filename": "/dcfd/2025/10/23/1039-1761249876.m4a",
+      "time": "2025-10-23T20:04:36.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1113963",
+          "_id": "68fa8a64d698754e6bf4ca58"
+        },
+        {
+          "pos": 4.5,
+          "src": "1116729",
+          "_id": "68fa8a64d698754e6bf4ca59"
+        },
+        {
+          "pos": 5.04,
+          "src": "-1",
+          "_id": "68fa8a64d698754e6bf4ca5a"
+        },
+        {
+          "pos": 5.4,
+          "src": "1116729",
+          "_id": "68fa8a64d698754e6bf4ca5b"
+        },
+        {
+          "pos": 6.66,
+          "src": "1116729",
+          "_id": "68fa8a64d698754e6bf4ca5c"
+        },
+        {
+          "pos": 7.02,
+          "src": "-1",
+          "_id": "68fa8a64d698754e6bf4ca5d"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 857187500,
+      "patches": [null],
+      "len": 8
+    },
+    {
+      "_id": "68fa8a69d698754e6bf4d625",
+      "talkgroupNum": 1039,
+      "url": "https://media.openmhz.com/media/dcfd/1039/dcfd-1039-1761249891.m4a",
+      "filename": "/dcfd/2025/10/23/1039-1761249891.m4a",
+      "time": "2025-10-23T20:04:51.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1116729",
+          "_id": "68fa8a69d698754e6bf4d626"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 860987500,
+      "patches": [null],
+      "len": 1
+    },
+    {
+      "_id": "68fa8a93d698754e6bf52482",
+      "talkgroupNum": 1039,
+      "url": "https://media.openmhz.com/media/dcfd/1039/dcfd-1039-1761249896.m4a",
+      "filename": "/dcfd/2025/10/23/1039-1761249896.m4a",
+      "time": "2025-10-23T20:04:56.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1104082",
+          "_id": "68fa8a93d698754e6bf52483"
+        },
+        {
+          "pos": 1.98,
+          "src": "1116729",
+          "_id": "68fa8a93d698754e6bf52484"
+        },
+        {
+          "pos": 3.42,
+          "src": "1104082",
+          "_id": "68fa8a93d698754e6bf52485"
+        },
+        {
+          "pos": 8.28,
+          "src": "1116729",
+          "_id": "68fa8a93d698754e6bf52486"
+        },
+        {
+          "pos": 9.72,
+          "src": "1104082",
+          "_id": "68fa8a93d698754e6bf52487"
+        },
+        {
+          "pos": 16.74,
+          "src": "1116729",
+          "_id": "68fa8a93d698754e6bf52488"
+        },
+        {
+          "pos": 17.82,
+          "src": "1116729",
+          "_id": "68fa8a93d698754e6bf52489"
+        },
+        {
+          "pos": 22.32,
+          "src": "1116729",
+          "_id": "68fa8a93d698754e6bf5248a"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 857187500,
+      "patches": [null],
+      "len": 26
+    },
+    {
+      "_id": "68fa8a8ad698754e6bf51095",
+      "talkgroupNum": 728,
+      "url": "https://media.openmhz.com/media/dcfd/728/dcfd-728-1761249906.m4a",
+      "filename": "/dcfd/2025/10/23/728-1761249906.m4a",
+      "time": "2025-10-23T20:05:06.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1118990",
+          "_id": "68fa8a8ad698754e6bf51096"
+        },
+        {
+          "pos": 0.9,
+          "src": "1118990",
+          "_id": "68fa8a8ad698754e6bf51097"
+        },
+        {
+          "pos": 5.94,
+          "src": "1116746",
+          "_id": "68fa8a8ad698754e6bf51098"
+        },
+        {
+          "pos": 12.42,
+          "src": "1118990",
+          "_id": "68fa8a8ad698754e6bf51099"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 858587500,
+      "patches": [null],
+      "len": 14
+    },
+    {
+      "_id": "68fa8a9ad698754e6bf5351c",
+      "talkgroupNum": 1535,
+      "url": "https://media.openmhz.com/media/dcfd/1535/dcfd-1535-1761249940.m4a",
+      "filename": "/dcfd/2025/10/23/1535-1761249940.m4a",
+      "time": "2025-10-23T20:05:40.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "-1",
+          "_id": "68fa8a9ad698754e6bf5351d"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 858587500,
+      "patches": [null],
+      "len": 0
+    },
+    {
+      "_id": "68fa8ab0d698754e6bf55f72",
+      "talkgroupNum": 101,
+      "url": "https://media.openmhz.com/media/dcfd/101/dcfd-101-1761249944.m4a",
+      "filename": "/dcfd/2025/10/23/101-1761249944.m4a",
+      "time": "2025-10-23T20:05:44.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "1116708",
+          "_id": "68fa8ab0d698754e6bf55f73"
+        },
+        {
+          "pos": 0.9,
+          "src": "1116708",
+          "_id": "68fa8ab0d698754e6bf55f74"
+        },
+        {
+          "pos": 6.12,
+          "src": "1116708",
+          "_id": "68fa8ab0d698754e6bf55f75"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 858587500,
+      "patches": [],
+      "len": 16
+    },
+    {
+      "_id": "68fa8abbd698754e6bf57756",
+      "talkgroupNum": 1535,
+      "url": "https://media.openmhz.com/media/dcfd/1535/dcfd-1535-1761249964.m4a",
+      "filename": "/dcfd/2025/10/23/1535-1761249964.m4a",
+      "time": "2025-10-23T20:06:04.000Z",
+      "srcList": [
+        {
+          "pos": 0,
+          "src": "-1",
+          "_id": "68fa8abbd698754e6bf57757"
+        }
+      ],
+      "star": 0,
+      "emergency": false,
+      "freq": 857187500,
+      "patches": [null],
+      "len": 0
+    }
+  ],
+  "direction": "newer"
+}

@@ -1,14 +1,17 @@
 /**
  * Enhanced Stream Server with OpenMHz Integration
  * Provides both local SDR streams and OpenMHz remote streams
+ * Combines WebSocket server and OpenMHz Python ingestion directly
  */
 
-import { spawn } from "child_process";
-import WebSocket, { WebSocketServer } from "ws";
-import OpenMHZIntegration from "./openmhz_integration.js";
+const { spawn } = require("child_process");
+const WebSocket = require("ws");
+const path = require("path");
+const http = require("http");
+const https = require("https");
 
+const { WebSocketServer } = WebSocket;
 const wss = new WebSocketServer({ port: 8080 });
-const openmhz = new OpenMHZIntegration();
 
 console.log("WebSocket SDR stream server running on ws://localhost:8080");
 console.log("Supports both local SDR and OpenMHz remote streams");
@@ -16,6 +19,136 @@ console.log("Supports both local SDR and OpenMHz remote streams");
 // Track active connections and their stream types
 const connections = new Map();
 
+// Path to Python ingestion script
+const pythonScript = path.join(__dirname, 'ingest_openmhz.py');
+
+/**
+ * Ingest a system and get stream profiles by calling Python script
+ * @param {string} systemId - The OpenMHz system ID (e.g., 'rhode-island')
+ * @param {Object} options - Ingestion options
+ * @param {Array<number>} options.talkgroupIds - Optional talkgroup IDs to filter
+ * @param {string} options.groupId - Optional group ID to filter
+ * @returns {Promise<Object>} System profile with available streams
+ */
+async function ingestSystem(systemId, options = {}) {
+  return new Promise((resolve, reject) => {
+    const args = ['--system', systemId, '--format', 'json'];
+
+    // Add optional filters
+    if (options.talkgroupIds && options.talkgroupIds.length > 0) {
+      args.push('--talkgroups', options.talkgroupIds.join(','));
+    }
+    if (options.groupId) {
+      args.push('--group', options.groupId);
+    }
+
+    // Spawn Python process
+    const process = spawn('python3', [pythonScript, ...args]);
+
+    let stdout = '';
+    let stderr = '';
+
+    process.stdout.on('data', (data) => {
+      stdout += data.toString();
+    });
+
+    process.stderr.on('data', (data) => {
+      stderr += data.toString();
+    });
+
+    process.on('close', (code) => {
+      if (code !== 0) {
+        reject(new Error(`Ingestion failed: ${stderr}`));
+        return;
+      }
+
+      try {
+        const profile = JSON.parse(stdout);
+        resolve(profile);
+      } catch (error) {
+        reject(new Error(`Failed to parse output: ${error.message}`));
+      }
+    });
+
+    process.on('error', (error) => {
+      reject(new Error(`Failed to start ingestion: ${error.message}`));
+    });
+  });
+}
+
+/**
+ * Get talkgroups for a system
+ * @param {string} systemId - The OpenMHz system ID
+ * @returns {Promise<Array>} List of talkgroups
+ */
+async function getTalkgroups(systemId) {
+  const profile = await ingestSystem(systemId);
+  return profile.talkgroups;
+}
+
+/**
+ * Stream audio from OpenMHz to WebSocket clients
+ * @param {string} audioUrl - The audio URL from OpenMHz
+ * @param {WebSocket} ws - WebSocket connection to stream to
+ * @returns {void}
+ */
+function streamAudio(audioUrl, ws) {
+  const protocol = audioUrl.startsWith('https') ? https : http;
+
+  const request = protocol.get(audioUrl, (response) => {
+    if (response.statusCode !== 200) {
+      ws.send(JSON.stringify({
+        type: 'error',
+        message: `Failed to fetch audio: ${response.statusCode}`
+      }));
+      return;
+    }
+
+    // Notify client that streaming is starting
+    ws.send(JSON.stringify({
+      type: 'stream_start',
+      contentType: response.headers['content-type']
+    }));
+
+    // Pipe audio data to WebSocket
+    response.on('data', (chunk) => {
+      if (ws.readyState === WebSocket.OPEN) {
+        ws.send(chunk);
+      }
+    });
+
+    response.on('end', () => {
+      if (ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({ type: 'stream_end' }));
+      }
+    });
+
+    response.on('error', (error) => {
+      if (ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({
+          type: 'error',
+          message: error.message
+        }));
+      }
+    });
+  });
+
+  request.on('error', (error) => {
+    if (ws.readyState === WebSocket.OPEN) {
+      ws.send(JSON.stringify({
+        type: 'error',
+        message: error.message
+      }));
+    }
+  });
+
+  // Handle client disconnect
+  ws.on('close', () => {
+    request.destroy();
+  });
+}
+
+// WebSocket connection handler
 wss.on("connection", (ws, req) => {
   const clientId = Math.random().toString(36).substring(7);
   console.log(`Client connected: ${clientId}`);
@@ -114,7 +247,7 @@ async function handleGetStreams(clientId, ws, payload) {
 
   try {
     console.log(`Fetching streams for system: ${systemId}`);
-    const profile = await openmhz.ingestSystem(systemId, {
+    const profile = await ingestSystem(systemId, {
       talkgroupIds,
       groupId
     });
@@ -152,7 +285,7 @@ async function handleStartStream(clientId, ws, payload) {
 
   if (streamType === "local_sdr") {
     // Start local SDR stream
-    const py = spawn("python3", ["backend/sdr/sim-capture.py"]);
+    const py = spawn("python3", [path.join(__dirname, "../sdr/sim-capture.py")]);
 
     py.stdout.on("data", (data) => {
       if (ws.readyState === WebSocket.OPEN) {
@@ -186,7 +319,7 @@ async function handleStartStream(clientId, ws, payload) {
     connection.streamId = streamId;
 
     // Stream the audio
-    openmhz.streamAudio(audioUrl, ws);
+    streamAudio(audioUrl, ws);
 
   } else {
     ws.send(JSON.stringify({
@@ -236,7 +369,7 @@ async function handleGetTalkgroups(clientId, ws, payload) {
 
   try {
     console.log(`Fetching talkgroups for system: ${systemId}`);
-    const talkgroups = await openmhz.getTalkgroups(systemId);
+    const talkgroups = await getTalkgroups(systemId);
 
     ws.send(JSON.stringify({
       type: "talkgroups_list",
