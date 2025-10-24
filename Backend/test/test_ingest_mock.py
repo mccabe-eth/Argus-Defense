@@ -80,14 +80,15 @@ MOCK_CALLS = [
 def test_mock_ingestion():
     """Test the ingestion with mock data"""
     print("=" * 80)
-    print("OpenMHz Ingestion Mock Test")
+    print("OpenMHz Ingestion Mock Test (with Wallet Assignment)")
     print("=" * 80)
     print()
 
     # Import from the actual script
     import sys
+    import os
     sys.path.insert(0, '.')
-    from ingest_openmhz import StreamProfileGenerator
+    from ingest_openmhz import StreamProfileGenerator, WalletAssigner
 
     system_id = "test-system"
 
@@ -96,11 +97,33 @@ def test_mock_ingestion():
     print(f"Mock calls: {len(MOCK_CALLS)}")
     print()
 
+    # Try to initialize wallet assigner (may fail if ts-node not available)
+    wallet_assigner = None
+    assign_wallets = False
+    backend_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
+    if os.path.exists(os.path.join(backend_dir, 'scripts', 'generateStreamWallet.ts')):
+        print(f"✓ Found wallet generation script")
+        try:
+            wallet_assigner = WalletAssigner(backend_dir)
+            assign_wallets = True
+            print(f"✓ Wallet assigner initialized")
+        except Exception as e:
+            print(f"⚠ Could not initialize wallet assigner: {e}")
+            print(f"  Continuing without wallet assignment")
+    else:
+        print(f"⚠ Wallet generation script not found")
+        print(f"  Continuing without wallet assignment")
+
+    print()
+
     # Generate system profile
     profile = StreamProfileGenerator.generate_system_profile(
         system_id,
         MOCK_TALKGROUPS,
-        MOCK_CALLS
+        MOCK_CALLS,
+        wallet_assigner=wallet_assigner,
+        assign_wallets=assign_wallets
     )
 
     print("✓ Successfully generated system profile")
@@ -122,6 +145,8 @@ def test_mock_ingestion():
         print(f"   Talkgroup: {stream['talkgroup_id']}")
         print(f"   Duration: {stream['duration']}s")
         print(f"   Radios: {len(stream['src_list'])}")
+        if 'wallet' in stream:
+            print(f"   ✓ Wallet: {stream['wallet']['address']}")
 
     print()
     print("=" * 80)
