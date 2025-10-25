@@ -46,14 +46,14 @@ The integration consists of:
            │
            ▼
 ┌─────────────────────┐
-│  Backend/           │
+│  backend/           │
 │  apiServer.js       │
 │  (Express API)      │
 └──────────┬──────────┘
            │
            ▼
 ┌─────────────────────┐
-│  Frontend/nextjs/   │
+│  frontend/nextjs/   │
 │  app/streams/       │
 │  page.tsx           │
 └─────────────────────┘
@@ -76,10 +76,10 @@ This will install dependencies for both backend and frontend, including:
 
 ### 2. Configure Environment Variables
 
-The `.env.local` file has been created in `Frontend/nextjs/` with:
+The `.env.local` file has been created in `frontend/nextjs/` with:
 
 ```bash
-# Frontend/nextjs/.env.local
+# frontend/nextjs/.env.local
 NEXT_PUBLIC_API_URL=http://localhost:3001
 ```
 
@@ -87,16 +87,16 @@ This tells the frontend where to find the API server.
 
 ### 3. Generate Stream Data (Optional)
 
-The example data is already available in `Backend/openmhz/example_streams_with_wallets.json`.
+The example data is already available in `backend/openmhz/example_streams_with_wallets.json`.
 
 To regenerate with fresh data from OpenMHz:
 
 ```bash
-cd Backend/openmhz
+cd backend/openmhz
 python3 ingest_openmhz.py
 ```
 
-This will update `Backend/openmhz/example_streams_with_wallets.json` with the latest stream data.
+This will update `backend/openmhz/example_streams_with_wallets.json` with the latest stream data.
 
 ## Running the System
 
@@ -250,7 +250,7 @@ The main landing page now includes a new "Radio Streams" card that links to `/st
 
 ```
 Argus-Defense/
-├── Backend/
+├── backend/
 │   ├── apiServer.js                         # Express API server for REST endpoints
 │   ├── package.json                         # Updated with express, cors
 │   ├── openmhz/
@@ -259,7 +259,7 @@ Argus-Defense/
 │   │   └── streamServer_openmhz.js          # WebSocket server (merged, simplified)
 │   └── sdr/
 │       └── sim-capture.py                   # Local SDR simulation
-└── Frontend/nextjs/
+└── frontend/nextjs/
     └── app/
         ├── page.tsx                         # Updated with streams link
         └── streams/
@@ -328,7 +328,7 @@ This means the frontend cannot connect to the API server. Check:
    - The error will tell you if it's trying to connect to the right URL
 
 4. **Verify environment variable:**
-   - Check that `Frontend/nextjs/.env.local` exists
+   - Check that `frontend/nextjs/.env.local` exists
    - Should contain: `NEXT_PUBLIC_API_URL=http://localhost:3001`
    - **Restart the frontend** after creating/changing .env files (NextJS caches env vars)
 
@@ -351,7 +351,7 @@ This means the frontend cannot connect to the API server. Check:
 ### No Streams Showing
 
 **Error:** "No streams available"
-- **Solution:** Run `python3 Backend/sdr/ingest_openmhz.py` to generate stream data
+- **Solution:** Run `python3 backend/sdr/ingest_openmhz.py` to generate stream data
 - **Solution:** Check that `Assets/example_streams_with_wallets.json` exists
 
 ### Audio Won't Play

@@ -22,17 +22,17 @@ This will install all the libp2p modules we added to your package.json files.
 
 ### Backend Components
 
-1. **[Backend/libp2p/p2pNode.mjs](Backend/libp2p/p2pNode.mjs)** - Core libp2p node configuration
+1. **[backend/libp2p/p2pNode.mjs](backend/libp2p/p2pNode.mjs)** - Core libp2p node configuration
    - Creates and manages libp2p nodes
    - Configures pubsub (GossipSub)
    - Handles peer discovery via bootstrap nodes
 
-2. **[Backend/libp2p/streamPublisher.mjs](Backend/libp2p/streamPublisher.mjs)** - Stream publisher
+2. **[backend/libp2p/streamPublisher.mjs](backend/libp2p/streamPublisher.mjs)** - Stream publisher
    - Publishes audio streams to libp2p topics
    - Supports OpenMHz streams and local SDR
    - Tracks listener counts and stats
 
-3. **[Backend/libp2p/streamSubscriber.mjs](Backend/libp2p/streamSubscriber.mjs)** - Stream subscriber
+3. **[backend/libp2p/streamSubscriber.mjs](backend/libp2p/streamSubscriber.mjs)** - Stream subscriber
    - Subscribes to stream topics
    - Receives and buffers audio chunks
    - Emits events for stream data
@@ -74,7 +74,7 @@ yarn api
 
 ### Terminal 4: Start libp2p Publisher (P2P streaming)
 ```bash
-node Backend/startPublisher.mjs
+node backend/startPublisher.mjs
 ```
 
 The publisher will start and make itself available globally for testing. You can then use:

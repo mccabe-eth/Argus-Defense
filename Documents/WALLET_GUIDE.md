@@ -14,7 +14,7 @@ Each stream gets a unique Ethereum wallet address where listeners can send tips/
 
 ```bash
 # Generate wallets during ingestion
-cd Backend/openmhz
+cd backend/openmhz
 python3 ingest_openmhz.py --system rhode-island --assign-wallets --save-registry
 
 # View generated wallets
@@ -108,7 +108,7 @@ const fs = require('fs');
 
 // Read registry
 const streams = JSON.parse(
-  fs.readFileSync('Backend/openmhz/streams.json', 'utf-8')
+  fs.readFileSync('backend/openmhz/streams.json', 'utf-8')
 );
 
 // Get wallet for stream
@@ -122,7 +122,7 @@ console.log(stream.wallet.address);
 import json
 
 # Read registry
-with open('Backend/openmhz/streams.json') as f:
+with open('backend/openmhz/streams.json') as f:
     streams = json.load(f)
 
 # Get wallet
@@ -132,7 +132,7 @@ print(stream['wallet']['address'])
 
 ## Registry File: streams.json
 
-**Location:** `Backend/openmhz/streams.json`
+**Location:** `backend/openmhz/streams.json`
 
 **Structure:**
 ```json
@@ -158,20 +158,20 @@ print(stream['wallet']['address'])
 
 ```bash
 # Pretty print
-cat Backend/openmhz/streams.json | python3 -m json.tool
+cat backend/openmhz/streams.json | python3 -m json.tool
 
 # Get specific system
-cat Backend/openmhz/streams.json | jq '.["rhode-island"]'
+cat backend/openmhz/streams.json | jq '.["rhode-island"]'
 
 # List all wallets
-cat Backend/openmhz/streams.json | jq '.[].streams[].wallet.address'
+cat backend/openmhz/streams.json | jq '.[].streams[].wallet.address'
 ```
 
 ## Automation
 
 ### Cron Job: Update Every 5 Minutes
 ```bash
-*/5 * * * * cd /path/to/Argus-Defense && python3 Backend/openmhz/ingest_openmhz.py --system rhode-island --assign-wallets --save-registry
+*/5 * * * * cd /path/to/Argus-Defense && python3 backend/openmhz/ingest_openmhz.py --system rhode-island --assign-wallets --save-registry
 ```
 
 ### Batch Script: Multiple Systems
@@ -179,7 +179,7 @@ cat Backend/openmhz/streams.json | jq '.[].streams[].wallet.address'
 #!/bin/bash
 for system in rhode-island chicago sf_bay_area; do
   echo "Updating $system..."
-  python3 Backend/openmhz/ingest_openmhz.py \
+  python3 backend/openmhz/ingest_openmhz.py \
     --system $system \
     --assign-wallets \
     --save-registry
@@ -189,7 +189,7 @@ echo "All systems updated"
 
 ## API Integration
 
-The API server (`Backend/apiServer.js`) serves wallet data via REST:
+The API server (`backend/apiServer.js`) serves wallet data via REST:
 
 ```bash
 # Get all streams with wallets
@@ -270,11 +270,11 @@ Response includes wallet:
 ## File Structure
 
 ```
-Backend/openmhz/
+backend/openmhz/
 ├── ingest_openmhz.py          # Wallet generation logic
 └── streams.json               # Registry with wallet addresses
 
-Backend/
+backend/
 ├── apiServer.js               # Serves wallet data via REST
 └── contracts/
     └── StreamWallet.sol       # (Future) Smart contract
@@ -312,6 +312,6 @@ python3 ingest_openmhz.py \
 
 ## Next Steps
 
-- See `Backend/openmhz/README.md` for OpenMHz ingestion
+- See `backend/openmhz/README.md` for OpenMHz ingestion
 - See `Documents/STREAMS_SETUP.md` for full system setup
-- See `Backend/apiServer.js` for API implementation
+- See `backend/apiServer.js` for API implementation
