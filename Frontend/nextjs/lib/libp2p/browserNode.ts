@@ -4,11 +4,9 @@
  */
 
 import { createLibp2p, Libp2p } from 'libp2p';
-import { webRTC } from '@libp2p/webrtc';
 import { webSockets } from '@libp2p/websockets';
-import { webTransport } from '@libp2p/webtransport';
 import { noise } from '@chainsafe/libp2p-noise';
-import { mplex } from '@libp2p/mplex';
+import { yamux } from '@chainsafe/libp2p-yamux';
 import { gossipsub } from '@chainsafe/libp2p-gossipsub';
 import type { GossipSub } from '@chainsafe/libp2p-gossipsub';
 import { bootstrap } from '@libp2p/bootstrap';
@@ -46,19 +44,24 @@ export interface BrowserNodeConfig {
 
 /**
  * Create a browser-compatible libp2p node
+ * Uses WebSockets only (simpler, no relay needed)
+ * Browser connects to backend nodes via WebSocket
  */
 export async function createBrowserNode(config?: BrowserNodeConfig): Promise<Libp2p> {
+  // @ts-ignore - Type conflicts due to nested @libp2p/interface versions
   const node = await createLibp2p({
     addresses: {
       listen: [],
     },
+    // @ts-ignore
     transports: [
-      webRTC(),
-      webSockets(),
-      webTransport(),
+      webSockets()
     ],
+    // @ts-ignore
     connectionEncrypters: [noise()],
-    streamMuxers: [mplex()],
+    // @ts-ignore
+    streamMuxers: [yamux()],
+    // @ts-ignore
     peerDiscovery: [
       bootstrap({
         list: config?.bootstrapPeers || BOOTSTRAP_PEERS,
@@ -66,12 +69,12 @@ export async function createBrowserNode(config?: BrowserNodeConfig): Promise<Lib
       }),
     ],
     services: {
+      // @ts-ignore
       identify: identify(),
+      // @ts-ignore
       pubsub: gossipsub({
         emitSelf: false,
         allowPublishToZeroTopicPeers: true,
-        signMessages: true,
-        strictSigning: true,
       }),
     },
   });

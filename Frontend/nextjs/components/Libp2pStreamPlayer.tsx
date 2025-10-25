@@ -7,7 +7,7 @@
 
 import { useEffect } from 'react';
 import { PlayIcon, StopIcon, SignalIcon, UserGroupIcon } from '@heroicons/react/24/outline';
-import { useLibp2pStream } from '~/hooks/useLibp2pStream';
+import { useLibp2pStream } from '~~/hooks/useLibp2pStream';
 
 export interface Libp2pStreamPlayerProps {
   streamId: string;

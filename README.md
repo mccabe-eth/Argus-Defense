@@ -1,8 +1,63 @@
-# Argus-Defense
+# Argus Defense
+
+**Fully Decentralized P2P Emergency Radio Streaming**
+
 ETHOnline Hackathon 2025
 
-Argus Defense is a dual-environment project that uses both **Python 3.11+** (via virtual environments) and **Node.js** (via npm).  
-Follow these steps to set up and verify your local environment.
+A censorship-resistant platform for streaming emergency radio communications using libp2p. No central servers, no single point of failure.
+
+## Features
+
+- **100% Decentralized** - Runs on libp2p P2P network, no central servers
+- **Censorship Resistant** - IPFS-hosted frontend, distributed backend nodes
+- **Global Discovery** - Automatic stream discovery via GossipSub pubsub
+- **Real-time Streaming** - Live audio streaming directly peer-to-peer
+- **Emergency Focused** - Fire, Police, EMS radio communications
+- **Web3 Integration** - Wallet support for stream monetization
+
+## Quick Start (P2P Mode)
+
+### 1. Start Backend (Publisher Node)
+
+```bash
+cd Backend
+npm install
+./start-p2p.sh
+```
+
+This starts a libp2p node that publishes radio streams to the P2P network.
+
+### 2. Start Frontend (in new terminal)
+
+```bash
+cd Frontend/nextjs
+npm install
+npm run dev
+```
+
+### 3. Open Browser
+
+Visit **http://localhost:3000/streams**
+
+You should see streams appear within 30 seconds!
+
+## How It Works
+
+1. Backend nodes ingest radio streams from OpenMHz (or local SDR)
+2. Backend announces streams to global directory via libp2p pubsub
+3. Browsers start libp2p nodes and query the directory
+4. Users click "Listen P2P" to subscribe to stream topics
+5. Audio chunks stream directly peer-to-peer in real-time
+
+## Deployment
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for full production deployment guide.
+
+---
+
+## Legacy Setup (Python + Node.js)
+
+Argus Defense also includes legacy Python components for SDR capture and data processing.
 
 ### 1. Clone the Repository
 ```bash

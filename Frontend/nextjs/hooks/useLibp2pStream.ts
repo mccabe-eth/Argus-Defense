@@ -11,7 +11,7 @@ import {
   getStreamPeerCount,
   decodeAudioChunk,
   StreamMessage,
-} from '~/lib/libp2p/browserNode';
+} from '~~/lib/libp2p/browserNode';
 
 export interface StreamMetadata {
   streamId: string;
@@ -282,7 +282,7 @@ export function useLibp2pStream(): UseLibp2pStreamReturn {
 
     try {
       // Create a blob from audio chunks
-      const blob = new Blob(audioChunks, { type: 'audio/mpeg' });
+      const blob = new Blob(audioChunks as BlobPart[], { type: 'audio/mpeg' });
       const url = URL.createObjectURL(blob);
 
       // Create and play audio
@@ -343,7 +343,7 @@ export function useLibp2pStream(): UseLibp2pStreamReturn {
         audioRef.current.pause();
       }
       if (node) {
-        node.stop().catch(console.error);
+        Promise.resolve(node.stop()).catch(console.error);
       }
     };
   }, [node]);

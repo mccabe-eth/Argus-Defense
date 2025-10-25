@@ -162,6 +162,32 @@ function getStreamPeerCount(streamId) {
   return stream ? stream.listeners : 0;
 }
 
+/**
+ * Query the global stream directory
+ * @param {Object} filter - Optional filter criteria
+ * @returns {Promise<Array>} List of discovered streams
+ */
+async function queryDirectory(filter = {}) {
+  if (!publisherInstance) {
+    throw new Error('Publisher not started');
+  }
+
+  return await publisherInstance.queryDirectory(filter);
+}
+
+/**
+ * Get discovered streams from the directory
+ * @param {Object} filter - Optional filter criteria
+ * @returns {Array} List of discovered streams
+ */
+function getDiscoveredStreams(filter = {}) {
+  if (!publisherInstance) {
+    return [];
+  }
+
+  return publisherInstance.getDiscoveredStreams(filter);
+}
+
 module.exports = {
   startPublisher,
   stopPublisher,
@@ -170,5 +196,7 @@ module.exports = {
   getActiveStreams,
   getPublisherInfo,
   isStreamPublished,
-  getStreamPeerCount
+  getStreamPeerCount,
+  queryDirectory,
+  getDiscoveredStreams
 };

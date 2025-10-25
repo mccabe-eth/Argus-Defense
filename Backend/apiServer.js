@@ -511,6 +511,74 @@ app.post('/api/libp2p/stop', async (req, res) => {
 });
 
 /**
+ * GET /api/libp2p/directory/query
+ * Query the global stream directory
+ */
+app.get('/api/libp2p/directory/query', async (req, res) => {
+  try {
+    if (!libp2pInitialized) {
+      return res.status(400).json({
+        error: 'libp2p publisher not initialized'
+      });
+    }
+
+    const { publisher, system, category } = req.query;
+    const filter = {};
+    if (publisher) filter.publisher = publisher;
+    if (system) filter.system = system;
+    if (category) filter.category = category;
+
+    const streams = await libp2pService.queryDirectory(filter);
+
+    res.json({
+      success: true,
+      total: streams.length,
+      streams
+    });
+  } catch (error) {
+    console.error('Error in /api/libp2p/directory/query:', error);
+    res.status(500).json({
+      error: 'Failed to query directory',
+      message: error.message
+    });
+  }
+});
+
+/**
+ * GET /api/libp2p/directory/discovered
+ * Get discovered streams from the directory (cached)
+ */
+app.get('/api/libp2p/directory/discovered', (req, res) => {
+  try {
+    if (!libp2pInitialized) {
+      return res.status(400).json({
+        error: 'libp2p publisher not initialized'
+      });
+    }
+
+    const { publisher, system, category } = req.query;
+    const filter = {};
+    if (publisher) filter.publisher = publisher;
+    if (system) filter.system = system;
+    if (category) filter.category = category;
+
+    const streams = libp2pService.getDiscoveredStreams(filter);
+
+    res.json({
+      success: true,
+      total: streams.length,
+      streams
+    });
+  } catch (error) {
+    console.error('Error in /api/libp2p/directory/discovered:', error);
+    res.status(500).json({
+      error: 'Failed to get discovered streams',
+      message: error.message
+    });
+  }
+});
+
+/**
  * Health check endpoint
  */
 app.get('/health', (req, res) => {
@@ -654,6 +722,9 @@ app.listen(PORT, () => {
   console.log(`  POST http://localhost:${PORT}/api/libp2p/stop/:streamId`);
   console.log(`  GET  http://localhost:${PORT}/api/libp2p/status`);
   console.log(`  GET  http://localhost:${PORT}/api/libp2p/streams`);
+  console.log('\nlibp2p directory endpoints (decentralized discovery):');
+  console.log(`  GET  http://localhost:${PORT}/api/libp2p/directory/query`);
+  console.log(`  GET  http://localhost:${PORT}/api/libp2p/directory/discovered`);
   console.log('\n');
 
   // Start auto-publish watcher if enabled

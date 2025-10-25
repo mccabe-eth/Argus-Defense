@@ -4,6 +4,7 @@
  */
 
 import { startNode, publishToTopic, getTopicPeers } from './p2pNode.mjs';
+import { StreamDirectory } from './streamDirectory.mjs';
 import { spawn } from 'child_process';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -20,6 +21,7 @@ const __dirname = path.dirname(__filename);
 export default class StreamPublisher {
   constructor() {
     this.node = null;
+    this.directory = null;
     this.activeStreams = new Map();
     this.streamStats = new Map();
   }
@@ -38,6 +40,10 @@ export default class StreamPublisher {
       listen: ['/ip4/127.0.0.1/tcp/9001']
     });
 
+    // Initialize stream directory
+    this.directory = new StreamDirectory(this.node);
+    await this.directory.start();
+
     console.log('✅ Stream Publisher ready!');
     console.log(`📍 Publisher Peer ID: ${this.node.peerId.toString()}`);
   }
@@ -55,6 +61,12 @@ export default class StreamPublisher {
     // Stop all active streams
     for (const [streamId] of this.activeStreams) {
       await this.stopStream(streamId);
+    }
+
+    // Stop stream directory
+    if (this.directory) {
+      await this.directory.stop();
+      this.directory = null;
     }
 
     // Stop the node
@@ -115,6 +127,21 @@ export default class StreamPublisher {
       bytesPublished: 0,
       duration: 0
     });
+
+    // Announce stream to the global directory
+    if (this.directory) {
+      await this.directory.announceStream(streamId, {
+        name: metadata.name || streamId,
+        audioUrl,
+        source: 'openmhz',
+        system_name: metadata.system_name,
+        category: metadata.category,
+        talkgroup_id: metadata.talkgroup_id,
+        duration: metadata.duration,
+        timestamp: metadata.timestamp,
+        ...metadata
+      });
+    }
 
     const request = protocol.get(audioUrl, (response) => {
       if (response.statusCode !== 200) {
@@ -323,6 +350,11 @@ export default class StreamPublisher {
 
     await publishToTopic(this.node, streamInfo.topic, endMsg);
 
+    // Deregister from directory
+    if (this.directory) {
+      await this.directory.deregisterStream(streamId);
+    }
+
     this.activeStreams.delete(streamId);
     this.streamStats.delete(streamId);
 
@@ -364,12 +396,49 @@ export default class StreamPublisher {
       return { status: 'stopped' };
     }
 
+    const directoryInfo = this.directory ? this.directory.getStreamCount() : { local: 0, discovered: 0, total: 0 };
+
     return {
       status: 'running',
       peerId: this.node.peerId.toString(),
       addresses: this.node.getMultiaddrs().map(addr => addr.toString()),
       activeStreams: this.activeStreams.size,
-      peers: this.node.getPeers().length
+      peers: this.node.getPeers().length,
+      directory: directoryInfo
     };
+  }
+
+  /**
+   * Query the global stream directory
+   * @param {Object} filter - Optional filter criteria
+   * @returns {Promise<Array>} List of discovered streams
+   */
+  async queryDirectory(filter = {}) {
+    if (!this.directory) {
+      throw new Error('Directory not initialized');
+    }
+
+    return await this.directory.queryStreams(filter);
+  }
+
+  /**
+   * Get discovered streams from the directory
+   * @param {Object} filter - Optional filter criteria
+   * @returns {Array} List of discovered streams
+   */
+  getDiscoveredStreams(filter = {}) {
+    if (!this.directory) {
+      return [];
+    }
+
+    return this.directory.getDiscoveredStreams(filter);
+  }
+
+  /**
+   * Get the stream directory instance
+   * @returns {StreamDirectory} Stream directory
+   */
+  getDirectory() {
+    return this.directory;
   }
 }
