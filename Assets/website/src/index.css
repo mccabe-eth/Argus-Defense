@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Argus Defense Design System - Cyber Security Aesthetic
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Core Cyber Theme - Dark Background */
+    --background: 210 30% 8%;
+    --foreground: 180 100% 90%;
+
+    /* Cards with subtle elevation */
+    --card: 210 25% 12%;
+    --card-foreground: 180 100% 90%;
+
+    /* Popover/Modal elements */
+    --popover: 210 20% 15%;
+    --popover-foreground: 180 100% 90%;
+
+    /* Primary - Argus Cyan Brand */
+    --primary: 180 100% 50%;
+    --primary-foreground: 210 30% 8%;
+    --primary-glow: 180 100% 60%;
+
+    /* Secondary - Muted Cyan */
+    --secondary: 210 25% 16%;
+    --secondary-foreground: 180 80% 75%;
+
+    /* Muted elements */
+    --muted: 210 20% 14%;
+    --muted-foreground: 180 20% 60%;
+
+    /* Accent for highlights */
+    --accent: 180 100% 50%;
+    --accent-foreground: 210 30% 8%;
+
+    /* Threat Level Colors */
+    --threat-low: 120 60% 50%;
+    --threat-medium: 45 100% 60%;
+    --threat-high: 0 85% 60%;
+    --threat-critical: 340 80% 55%;
+
+    /* Destructive */
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Borders and inputs */
+    --border: 210 20% 18%;
+    --input: 210 20% 16%;
+    --ring: 180 100% 50%;
+
+    /* Radius for modern look */
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-cyber: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-threat: linear-gradient(135deg, hsl(var(--threat-high)), hsl(var(--threat-critical)));
+    --gradient-bg: linear-gradient(135deg, hsl(var(--background)), hsl(210 25% 12%));
+
+    /* Glows and effects */
+    --glow-primary: 0 0 30px hsl(var(--primary) / 0.3);
+    --glow-threat: 0 0 20px hsl(var(--threat-high) / 0.4);
+    --shadow-cyber: 0 8px 32px hsl(var(--primary) / 0.15);
+
+    /* Animations */
+    --transition-cyber: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Dark mode is default for security aesthetic */
+  .dark {
+    /* Same as root - dark first approach */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-mono antialiased;
+    background: linear-gradient(135deg, hsl(var(--background)), hsl(210 25% 12%));
+    min-height: 100vh;
+  }
+
+  /* Cyber grid pattern */
+  .cyber-grid {
+    background-image: 
+      linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* Glow effects */
+  .glow-primary {
+    box-shadow: var(--glow-primary);
+  }
+
+  .glow-threat {
+    box-shadow: var(--glow-threat);
+  }
+
+  /* Pulse animation for live data */
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+}

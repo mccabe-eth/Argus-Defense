@@ -5,8 +5,8 @@ import "~~/styles/globals.css";
 import { getMetadata } from "~~/utils/scaffold-eth/getMetadata";
 
 export const metadata = getMetadata({
-  title: "Scaffold-ETH 2 App",
-  description: "Built with 🏗 Scaffold-ETH 2",
+  title: "Argus Defense - Global Threat Intelligence Platform",
+  description: "Web3-powered global threat intelligence platform with real-time monitoring, decentralized validation, and blockchain-verified reporting.",
 });
 
 const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {

@@ -1,95 +1,81 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
-
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
-
-@theme {
-  --shadow-center: 0 0 12px -2px rgb(0 0 0 / 0.05);
-  --animate-pulse-fast: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-@plugin "daisyui" {
-  themes:
-    light,
-    dark --prefersdark;
-}
-
-@plugin "daisyui/theme" {
-  name: "light";
-
-  --color-primary: #93bbfb;
-  --color-primary-content: #212638;
-  --color-secondary: #dae8ff;
-  --color-secondary-content: #212638;
-  --color-accent: #93bbfb;
-  --color-accent-content: #212638;
-  --color-neutral: #212638;
-  --color-neutral-content: #ffffff;
-  --color-base-100: #ffffff;
-  --color-base-200: #f4f8ff;
-  --color-base-300: #dae8ff;
-  --color-base-content: #212638;
-  --color-info: #93bbfb;
-  --color-success: #34eeb6;
-  --color-warning: #ffcf72;
-  --color-error: #ff8863;
-
-  --radius-field: 9999rem;
-  --radius-box: 1rem;
-  --tt-tailw: 6px;
-}
-
-@plugin "daisyui/theme" {
-  name: "dark";
-
-  --color-primary: #212638;
-  --color-primary-content: #f9fbff;
-  --color-secondary: #323f61;
-  --color-secondary-content: #f9fbff;
-  --color-accent: #4969a6;
-  --color-accent-content: #f9fbff;
-  --color-neutral: #f9fbff;
-  --color-neutral-content: #385183;
-  --color-base-100: #385183;
-  --color-base-200: #2a3655;
-  --color-base-300: #212638;
-  --color-base-content: #f9fbff;
-  --color-info: #385183;
-  --color-success: #34eeb6;
-  --color-warning: #ffcf72;
-  --color-error: #ff8863;
-
-  --radius-field: 9999rem;
-  --radius-box: 1rem;
-
-  --tt-tailw: 6px;
-  --tt-bg: var(--color-primary);
-}
-
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
+/* Argus Defense Design System - Cyber Security Aesthetic
+All colors MUST be HSL.
 */
+
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
+  :root {
+    /* Core Cyber Theme - Dark Background */
+    --background: 210 30% 8%;
+    --foreground: 180 100% 90%;
+
+    /* Cards with subtle elevation */
+    --card: 210 25% 12%;
+    --card-foreground: 180 100% 90%;
+
+    /* Popover/Modal elements */
+    --popover: 210 20% 15%;
+    --popover-foreground: 180 100% 90%;
+
+    /* Primary - Argus Cyan Brand */
+    --primary: 180 100% 50%;
+    --primary-foreground: 210 30% 8%;
+    --primary-glow: 180 100% 60%;
+
+    /* Secondary - Muted Cyan */
+    --secondary: 210 25% 16%;
+    --secondary-foreground: 180 80% 75%;
+
+    /* Muted elements */
+    --muted: 210 20% 14%;
+    --muted-foreground: 180 20% 60%;
+
+    /* Accent for highlights */
+    --accent: 180 100% 50%;
+    --accent-foreground: 210 30% 8%;
+
+    /* Threat Level Colors */
+    --threat-low: 120 60% 50%;
+    --threat-medium: 45 100% 60%;
+    --threat-high: 0 85% 60%;
+    --threat-critical: 340 80% 55%;
+
+    /* Destructive */
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Borders and inputs */
+    --border: 210 20% 18%;
+    --input: 210 20% 16%;
+    --ring: 180 100% 50%;
+
+    /* Radius for modern look */
+    --radius: 0.75rem;
+  }
+
+  /* Dark mode is default for security aesthetic */
+  .dark {
+    /* Same as root - dark first approach */
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    color: hsl(var(--foreground));
+    background: linear-gradient(135deg, hsl(210 30% 8%), hsl(210 25% 12%));
+    min-height: 100vh;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   p {
     margin: 1rem 0;
-  }
-
-  body {
-    min-height: 100vh;
   }
 
   h1,
@@ -97,27 +83,111 @@
   h3,
   h4 {
     margin-bottom: 0.5rem;
-    line-height: 1;
+    line-height: 1.2;
+  }
+
+  /* Cyber grid pattern */
+  .cyber-grid {
+    background-image:
+      linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* Glow effects */
+  .glow-primary {
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.3);
+  }
+
+  .glow-threat {
+    box-shadow: 0 0 20px hsl(var(--threat-high) / 0.4);
+  }
+
+  /* Pulse animation for live data */
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Gradient utilities */
+  .bg-gradient-cyber {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+  }
+
+  .bg-gradient-threat {
+    background: linear-gradient(135deg, hsl(var(--threat-high)), hsl(var(--threat-critical)));
+  }
+
+  .bg-gradient-bg {
+    background: linear-gradient(135deg, hsl(var(--background)), hsl(210 25% 12%));
+  }
+
+  /* Text gradient */
+  .text-gradient-cyber {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 }
 
-:root,
-[data-theme] {
-  background: var(--color-base-200);
+/* Threat level color utilities */
+.text-threat-low {
+  color: hsl(var(--threat-low));
 }
 
-.btn {
-  @apply shadow-md;
+.text-threat-medium {
+  color: hsl(var(--threat-medium));
 }
 
-.btn.btn-ghost {
-  @apply shadow-none;
+.text-threat-high {
+  color: hsl(var(--threat-high));
 }
 
-.link {
-  text-underline-offset: 2px;
+.text-threat-critical {
+  color: hsl(var(--threat-critical));
 }
 
-.link:hover {
-  opacity: 80%;
+.bg-threat-low {
+  background-color: hsl(var(--threat-low));
+}
+
+.bg-threat-medium {
+  background-color: hsl(var(--threat-medium));
+}
+
+.bg-threat-high {
+  background-color: hsl(var(--threat-high));
+}
+
+.bg-threat-critical {
+  background-color: hsl(var(--threat-critical));
+}
+
+.border-primary\/20 {
+  border-color: hsl(var(--primary) / 0.2);
+}
+
+.border-primary\/40 {
+  border-color: hsl(var(--primary) / 0.4);
+}
+
+.border-primary\/50 {
+  border-color: hsl(var(--primary) / 0.5);
+}
+
+.bg-card\/50 {
+  background-color: hsl(var(--card) / 0.5);
+}
+
+.bg-background\/50 {
+  background-color: hsl(var(--background) / 0.5);
+}
+
+.bg-background\/95 {
+  background-color: hsl(var(--background) / 0.95);
 }

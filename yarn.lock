@@ -6823,6 +6823,7 @@ __metadata:
     it-pipe: ^3.0.1
     libp2p: ^3.0.6
     lint-staged: ~13.2.2
+    lucide-react: ^0.548.0
     mongodb: ^6.20.0
     nodemon: ^3.1.10
     serialport: ^13.0.0
@@ -13880,6 +13881,15 @@ __metadata:
   version: 0.3.3
   resolution: "lru_map@npm:0.3.3"
   checksum: ca9dd43c65ed7a4f117c548028101c5b6855e10923ea9d1f635af53ad20c5868ff428c364d454a7b57fe391b89c704982275410c3c5099cca5aeee00d76e169a
+  languageName: node
+  linkType: hard
+
+"lucide-react@npm:^0.548.0":
+  version: 0.548.0
+  resolution: "lucide-react@npm:0.548.0"
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: fc13fd26d0074bbe79ad660a9a5ed16008d7ed824e8cc6a7bc8dc7b6c107be0c276a3358431c75b6015256ec84099b794b97d9f87cfb5cd6f04a364d4d1fd62c
   languageName: node
   linkType: hard
 

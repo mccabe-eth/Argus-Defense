@@ -1,80 +1,90 @@
 import React from "react";
 import Link from "next/link";
-import { hardhat } from "viem/chains";
-import { CurrencyDollarIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { HeartIcon } from "@heroicons/react/24/outline";
-import { SwitchTheme } from "~~/components/SwitchTheme";
-import { BuidlGuidlLogo } from "~~/components/assets/BuidlGuidlLogo";
-import { Faucet } from "~~/components/scaffold-eth";
-import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
-import { useGlobalState } from "~~/services/store/store";
+import Image from "next/image";
+import { ExternalLink } from "lucide-react";
 
-/**
- * Site footer
- */
 export const Footer = () => {
-  const nativeCurrencyPrice = useGlobalState(state => state.nativeCurrency.price);
-  const { targetNetwork } = useTargetNetwork();
-  const isLocalNetwork = targetNetwork.id === hardhat.id;
-
   return (
-    <div className="min-h-0 py-5 px-1 mb-11 lg:mb-0">
-      <div>
-        <div className="fixed flex justify-between items-center w-full z-10 p-4 bottom-0 left-0 pointer-events-none">
-          <div className="flex flex-col md:flex-row gap-2 pointer-events-auto">
-            {nativeCurrencyPrice > 0 && (
+    <footer className="border-t border-border bg-background/95 backdrop-blur">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid md:grid-cols-4 gap-8">
+          <div className="space-y-4">
+            <div className="flex items-center space-x-3">
+              <Image
+                src="/argus-logo.png"
+                alt="Argus Defense"
+                width={32}
+                height={32}
+                className="h-8 w-auto"
+              />
               <div>
-                <div className="btn btn-primary btn-sm font-normal gap-1 cursor-auto">
-                  <CurrencyDollarIcon className="h-4 w-4" />
-                  <span>{nativeCurrencyPrice.toFixed(2)}</span>
-                </div>
+                <h3 className="font-bold text-primary">ARGUS DEFENSE</h3>
+                <p className="text-xs text-muted-foreground">Global Threat Intelligence</p>
               </div>
-            )}
-            {isLocalNetwork && (
-              <>
-                <Faucet />
-                <Link href="/blockexplorer" passHref className="btn btn-primary btn-sm font-normal gap-1">
-                  <MagnifyingGlassIcon className="h-4 w-4" />
-                  <span>Block Explorer</span>
-                </Link>
-              </>
-            )}
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Decentralized threat intelligence powered by Web3 technology and community validation.
+            </p>
           </div>
-          <SwitchTheme className={`pointer-events-auto ${isLocalNetwork ? "self-end md:self-auto" : ""}`} />
+
+          <div>
+            <h4 className="font-semibold mb-4">Platform</h4>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li><Link href="/dashboard" className="hover:text-primary transition-colors">Dashboard</Link></li>
+              <li><Link href="/threats" className="hover:text-primary transition-colors">Threat Map</Link></li>
+              <li><Link href="/reports" className="hover:text-primary transition-colors">Submit Report</Link></li>
+              <li><Link href="/governance" className="hover:text-primary transition-colors">Governance</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold mb-4">Web3</h4>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li><span className="hover:text-primary transition-colors cursor-pointer">Wallet Integration</span></li>
+              <li><span className="hover:text-primary transition-colors cursor-pointer">Staking</span></li>
+              <li><Link href="/governance" className="hover:text-primary transition-colors">Governance</Link></li>
+              <li><span className="hover:text-primary transition-colors cursor-pointer">Treasury</span></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold mb-4">Resources</h4>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>
+                <Link href="/documentation" className="hover:text-primary transition-colors flex items-center space-x-2">
+                  <span>Documentation</span>
+                </Link>
+              </li>
+              <li>
+                <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors flex items-center space-x-2">
+                  <ExternalLink className="h-3 w-3" />
+                  <span>GitHub</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors flex items-center space-x-2">
+                  <ExternalLink className="h-3 w-3" />
+                  <span>Twitter</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="border-t border-border mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-sm text-muted-foreground">
+            © 2024 Argus Defense. Securing the world through decentralized intelligence.
+          </p>
+          <div className="flex items-center space-x-4 mt-4 md:mt-0">
+            <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+              Privacy Policy
+            </span>
+            <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+              Terms of Service
+            </span>
+          </div>
         </div>
       </div>
-      <div className="w-full">
-        <ul className="menu menu-horizontal w-full">
-          <div className="flex justify-center items-center gap-2 text-sm w-full">
-            <div className="text-center">
-              <a href="https://github.com/scaffold-eth/se-2" target="_blank" rel="noreferrer" className="link">
-                Fork me
-              </a>
-            </div>
-            <span>·</span>
-            <div className="flex justify-center items-center gap-2">
-              <p className="m-0 text-center">
-                Built with <HeartIcon className="inline-block h-4 w-4" /> at
-              </p>
-              <a
-                className="flex justify-center items-center gap-1"
-                href="https://buidlguidl.com/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <BuidlGuidlLogo className="w-3 h-5 pb-1" />
-                <span className="link">BuidlGuidl</span>
-              </a>
-            </div>
-            <span>·</span>
-            <div className="text-center">
-              <a href="https://t.me/joinchat/KByvmRe5wkR-8F_zz6AjpA" target="_blank" rel="noreferrer" className="link">
-                Support
-              </a>
-            </div>
-          </div>
-        </ul>
-      </div>
-    </div>
+    </footer>
   );
 };

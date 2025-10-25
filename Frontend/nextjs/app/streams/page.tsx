@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from "react";
 import type { NextPage } from "next";
 import { PlayIcon, StopIcon, UserGroupIcon } from "@heroicons/react/24/outline";
 import { Address } from "~~/components/scaffold-eth";
+import { Header } from "~~/components/Header";
+import { Footer } from "~~/components/Footer";
 
 interface WalletInfo {
   address: string;
@@ -166,19 +168,25 @@ const StreamsPage: NextPage = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="text-center">
-          <div className="loading loading-spinner loading-lg"></div>
-          <p className="mt-4">Loading streams...</p>
+      <div className="min-h-screen bg-gradient-bg">
+        <Header />
+        <div className="flex items-center justify-center min-h-[80vh]">
+          <div className="text-center">
+            <div className="loading loading-spinner loading-lg"></div>
+            <p className="mt-4">Loading streams...</p>
+          </div>
         </div>
+        <Footer />
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="alert alert-error">
+      <div className="min-h-screen bg-gradient-bg">
+        <Header />
+        <div className="flex items-center justify-center min-h-[80vh]">
+          <div className="alert alert-error">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="stroke-current shrink-0 h-6 w-6"
@@ -194,11 +202,15 @@ const StreamsPage: NextPage = () => {
           </svg>
           <span>Error: {error}</span>
         </div>
+        </div>
+        <Footer />
       </div>
     );
   }
 
   return (
+    <div className="min-h-screen bg-gradient-bg">
+      <Header />
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
         <h1 className="text-4xl font-bold mb-2">Emergency Radio Streams</h1>
@@ -288,6 +300,8 @@ const StreamsPage: NextPage = () => {
           ))}
         </div>
       )}
+    </div>
+    <Footer />
     </div>
   );
 };
