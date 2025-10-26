@@ -6,6 +6,166 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
 const deployedContracts = {
   31337: {
+    StreamFactory: {
+      address: "0x82e01223d51Eb87e16A03E24687EDF0F294da6f1",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "_registry",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "_daoTreasury",
+              type: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "bytes32",
+              name: "streamId",
+              type: "bytes32",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "publisher",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "address",
+              name: "wallet",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "string",
+              name: "systemId",
+              type: "string",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "talkgroupId",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "string",
+              name: "callId",
+              type: "string",
+            },
+          ],
+          name: "StreamCreated",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "systemId",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "talkgroupId",
+              type: "uint256",
+            },
+            {
+              internalType: "string",
+              name: "callId",
+              type: "string",
+            },
+          ],
+          name: "createStream",
+          outputs: [
+            {
+              internalType: "bytes32",
+              name: "streamId",
+              type: "bytes32",
+            },
+            {
+              internalType: "address",
+              name: "wallet",
+              type: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string[]",
+              name: "systemIds",
+              type: "string[]",
+            },
+            {
+              internalType: "uint256[]",
+              name: "talkgroupIds",
+              type: "uint256[]",
+            },
+            {
+              internalType: "string[]",
+              name: "callIds",
+              type: "string[]",
+            },
+          ],
+          name: "createStreamBatch",
+          outputs: [
+            {
+              internalType: "bytes32[]",
+              name: "streamIds",
+              type: "bytes32[]",
+            },
+            {
+              internalType: "address[]",
+              name: "wallets",
+              type: "address[]",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "daoTreasury",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "registry",
+          outputs: [
+            {
+              internalType: "contract StreamRegistry",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+      deployedOnBlock: 73,
+    },
     StreamRegistry: {
       address: "0x1291Be112d480055DaFd8a610b7d1e203891C274",
       abi: [

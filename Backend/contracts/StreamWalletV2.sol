@@ -31,7 +31,7 @@ contract StreamWalletV2 is Ownable, ReentrancyGuard {
     mapping(address => uint256) public listenerMinutes;
     mapping(address => bool) public hasListened;
 
-    event PaymentReceived(address indexed listener, uint256 amount, uint256 minutes);
+    event PaymentReceived(address indexed listener, uint256 amount, uint256 minutesListened);
     event RevenueDistributed(uint256 toPublisher, uint256 toBandwidth, uint256 toDAO);
     event BandwidthRecorded(address indexed provider, uint256 bytes_);
 
@@ -48,20 +48,20 @@ contract StreamWalletV2 is Ownable, ReentrancyGuard {
     /**
      * @notice Pay for stream listening (called by listeners)
      */
-    function payForListening(uint256 minutes) external payable nonReentrant {
+    function payForListening(uint256 minutesListened) external payable nonReentrant {
         require(msg.value > 0, "Payment required");
-        require(minutes > 0, "Minutes > 0");
+        require(minutesListened > 0, "Minutes > 0");
 
         if (!hasListened[msg.sender]) {
             hasListened[msg.sender] = true;
             totalListeners++;
         }
 
-        listenerMinutes[msg.sender] += minutes;
-        totalMinutes += minutes;
+        listenerMinutes[msg.sender] += minutesListened;
+        totalMinutes += minutesListened;
         totalEarnings += msg.value;
 
-        emit PaymentReceived(msg.sender, msg.value, minutes);
+        emit PaymentReceived(msg.sender, msg.value, minutesListened);
         _distributeRevenue(msg.value);
     }
 

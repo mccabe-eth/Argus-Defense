@@ -35,7 +35,7 @@ contract StreamFactory {
         string memory systemId,
         uint256 talkgroupId,
         string memory callId
-    ) external returns (bytes32 streamId, address wallet) {
+    ) public returns (bytes32 streamId, address wallet) {
         // Compute stream ID
         streamId = registry.computeStreamId(systemId, talkgroupId, callId);
 
