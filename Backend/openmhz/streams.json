@@ -1,133 +1,223 @@
 {
-  "rhode-island": {
-    "system_id": "rhode-island",
-    "total_streams": 3,
-    "total_talkgroups": 15,
+  "local-test": {
+    "system_id": "local-test",
+    "total_streams": 5,
+    "total_talkgroups": 5,
     "talkgroups": [
       {
-        "num": 3344,
-        "decimal": 3344,
-        "alpha": "FIRE_DISP",
-        "description": "Providence Fire Dispatch",
-        "tag": "Fire Dispatch",
-        "category": "Emergency Services"
+        "num": 1001,
+        "decimal": 1001,
+        "alpha": "INTRO",
+        "description": "Argus Defense Introduction",
+        "tag": "Introduction",
+        "category": "Information"
       },
       {
-        "num": 3408,
-        "decimal": 3408,
-        "alpha": "POLICE_1",
-        "description": "Police Dispatch 1",
-        "tag": "Law Dispatch",
-        "category": "Law Enforcement"
+        "num": 1002,
+        "decimal": 1002,
+        "alpha": "MISSION",
+        "description": "Project Mission",
+        "tag": "Mission",
+        "category": "Information"
       },
       {
-        "num": 44912,
-        "decimal": 44912,
-        "alpha": "EMS_OPS",
-        "description": "EMS Operations",
-        "tag": "EMS Dispatch",
-        "category": "EMS"
+        "num": 1003,
+        "decimal": 1003,
+        "alpha": "CLIENTS",
+        "description": "Secure Platform for Clients",
+        "tag": "Platform",
+        "category": "Information"
+      },
+      {
+        "num": 1004,
+        "decimal": 1004,
+        "alpha": "DATA_AGG",
+        "description": "Real-Time Data Aggregation",
+        "tag": "Data",
+        "category": "Information"
+      },
+      {
+        "num": 1005,
+        "decimal": 1005,
+        "alpha": "SCALING",
+        "description": "Scaling Protection",
+        "tag": "Scaling",
+        "category": "Information"
       }
     ],
     "streams": [
       {
-        "stream_id": "rhode-island-3344-abc123def456",
-        "name": "Boston Fire Dispatch",
-        "description": "System: rhode-island | Category: Fire Dispatch | Duration: 15s | Radios: 3 | Time: 2025-10-23 19:58:53 UTC",
-        "audio_url": "https://cdn.openmhz.com/rhode-island/2025/10/23/3344-1729713045-abc123.m4a",
-        "system_name": "rhode-island",
-        "talkgroup_id": 3344,
-        "timestamp": "2025-10-23T19:58:53.000Z",
-        "duration": 15,
-        "filename": "2025/10/23/3344-1729713045-abc123.m4a",
+        "stream_id": "local-argus-defense---a-secure-platform-for-paying-clients-1-mp3",
+        "name": "Argus Defense - Secure Platform",
+        "description": "System: local-test | Category: Information | Duration: 90s | Local Test Stream",
+        "audio_url": "http://localhost:3001/assets/Argus%20Defense%20-%20A%20Secure%20Platform%20for%20Paying%20Clients%201.mp3",
+        "system_name": "local-test",
+        "talkgroup_id": 1003,
+        "timestamp": "2025-10-26T13:52:51.535Z",
+        "duration": 90,
+        "filename": "Argus Defense - A Secure Platform for Paying Clients 1.mp3",
         "src_list": [
-          {"src": 123001, "pos": 0.0},
-          {"src": 123002, "pos": 5.2},
-          {"src": 123003, "pos": 10.5}
-        ],
-        "metadata": {
-          "star_count": 2,
-          "call_id": "abc123def456",
-          "talkgroup_info": {
-            "num": 3344,
-            "alpha": "FIRE_DISP",
-            "description": "Providence Fire Dispatch",
-            "tag": "Fire Dispatch",
-            "category": "Emergency Services"
+          {
+            "src": 1003,
+            "pos": 0
           }
-        },
-        "wallet": {
-          "address": "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb5",
-          "contract_address": null,
-          "mode": "simple",
-          "created_at": "2025-10-23T20:15:30.123Z"
-        }
-      },
-      {
-        "stream_id": "rhode-island-3408-def456ghi789",
-        "name": "Police Dispatch 1",
-        "description": "System: rhode-island | Category: Law Dispatch | Duration: 22s | Radios: 2 | Time: 2025-10-23 19:55:53 UTC",
-        "audio_url": "https://cdn.openmhz.com/rhode-island/2025/10/23/3408-1729712910-def456.m4a",
-        "system_name": "rhode-island",
-        "talkgroup_id": 3408,
-        "timestamp": "2025-10-23T19:55:53.000Z",
-        "duration": 22,
-        "filename": "2025/10/23/3408-1729712910-def456.m4a",
-        "src_list": [
-          {"src": 124001, "pos": 0.0},
-          {"src": 124002, "pos": 12.3}
         ],
         "metadata": {
-          "star_count": 0,
-          "call_id": "def456ghi789",
+          "star_count": 3,
+          "call_id": "local-clients-003",
           "talkgroup_info": {
-            "num": 3408,
-            "alpha": "POLICE_1",
-            "description": "Police Dispatch 1",
-            "tag": "Law Dispatch",
-            "category": "Law Enforcement"
-          }
-        },
-        "wallet": {
-          "address": "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
-          "contract_address": null,
-          "mode": "simple",
-          "created_at": "2025-10-23T20:15:31.456Z"
-        }
-      },
-      {
-        "stream_id": "rhode-island-44912-ghi789jkl012",
-        "name": "EMS Operations",
-        "description": "System: rhode-island | Category: EMS Dispatch | Duration: 8s | Radios: 1 | Time: 2025-10-23 19:51:53 UTC",
-        "audio_url": "https://cdn.openmhz.com/rhode-island/2025/10/23/44912-1729712715-ghi789.m4a",
-        "system_name": "rhode-island",
-        "talkgroup_id": 44912,
-        "timestamp": "2025-10-23T19:51:53.000Z",
-        "duration": 8,
-        "filename": "2025/10/23/44912-1729712715-ghi789.m4a",
-        "src_list": [
-          {"src": 125001, "pos": 0.0}
-        ],
-        "metadata": {
-          "star_count": 1,
-          "call_id": "ghi789jkl012",
-          "talkgroup_info": {
-            "num": 44912,
-            "alpha": "EMS_OPS",
-            "description": "EMS Operations",
-            "tag": "EMS Dispatch",
-            "category": "EMS"
+            "num": 1003,
+            "alpha": "CLIENTS",
+            "description": "Secure Platform for Clients",
+            "tag": "Platform",
+            "category": "Information"
           }
         },
         "wallet": {
           "address": "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
           "contract_address": null,
           "mode": "simple",
-          "created_at": "2025-10-23T20:15:32.789Z"
+          "created_at": "2025-10-26T12:02:00.000Z"
+        }
+      },
+      {
+        "stream_id": "local-argus-defense---introduction-1-mp3",
+        "name": "Argus Defense - Introduction",
+        "description": "System: local-test | Category: Information | Duration: 45s | Local Test Stream",
+        "audio_url": "http://localhost:3001/assets/Argus%20Defense%20-%20Introduction%201.mp3",
+        "system_name": "local-test",
+        "talkgroup_id": 1001,
+        "timestamp": "2025-10-26T13:52:51.537Z",
+        "duration": 45,
+        "filename": "Argus Defense - Introduction 1.mp3",
+        "src_list": [
+          {
+            "src": 1001,
+            "pos": 0
+          }
+        ],
+        "metadata": {
+          "star_count": 5,
+          "call_id": "local-intro-001",
+          "talkgroup_info": {
+            "num": 1001,
+            "alpha": "INTRO",
+            "description": "Argus Defense Introduction",
+            "tag": "Introduction",
+            "category": "Information"
+          }
+        },
+        "wallet": {
+          "address": "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb5",
+          "contract_address": null,
+          "mode": "simple",
+          "created_at": "2025-10-26T12:00:00.000Z"
+        }
+      },
+      {
+        "stream_id": "local-argus-defense---project-mission-1-mp3",
+        "name": "Argus Defense - Project Mission",
+        "description": "System: local-test | Category: Information | Duration: 60s | Local Test Stream",
+        "audio_url": "http://localhost:3001/assets/Argus%20Defense%20-%20Project%20Mission%201.mp3",
+        "system_name": "local-test",
+        "talkgroup_id": 1002,
+        "timestamp": "2025-10-26T13:52:51.537Z",
+        "duration": 60,
+        "filename": "Argus Defense - Project Mission 1.mp3",
+        "src_list": [
+          {
+            "src": 1002,
+            "pos": 0
+          }
+        ],
+        "metadata": {
+          "star_count": 4,
+          "call_id": "local-mission-002",
+          "talkgroup_info": {
+            "num": 1002,
+            "alpha": "MISSION",
+            "description": "Project Mission",
+            "tag": "Mission",
+            "category": "Information"
+          }
+        },
+        "wallet": {
+          "address": "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
+          "contract_address": null,
+          "mode": "simple",
+          "created_at": "2025-10-26T12:01:00.000Z"
+        }
+      },
+      {
+        "stream_id": "local-argus-defense---real-time-data-aggregation-1-mp3",
+        "name": "Argus Defense - Data Aggregation",
+        "description": "System: local-test | Category: Information | Duration: 75s | Local Test Stream",
+        "audio_url": "http://localhost:3001/assets/Argus%20Defense%20-%20Real-Time%20Data%20Aggregation%201.mp3",
+        "system_name": "local-test",
+        "talkgroup_id": 1004,
+        "timestamp": "2025-10-26T13:52:51.537Z",
+        "duration": 75,
+        "filename": "Argus Defense - Real-Time Data Aggregation 1.mp3",
+        "src_list": [
+          {
+            "src": 1004,
+            "pos": 0
+          }
+        ],
+        "metadata": {
+          "star_count": 4,
+          "call_id": "local-data-004",
+          "talkgroup_info": {
+            "num": 1004,
+            "alpha": "DATA_AGG",
+            "description": "Real-Time Data Aggregation",
+            "tag": "Data",
+            "category": "Information"
+          }
+        },
+        "wallet": {
+          "address": "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb5",
+          "contract_address": null,
+          "mode": "simple",
+          "created_at": "2025-10-26T12:03:00.000Z"
+        }
+      },
+      {
+        "stream_id": "local-argus-defense---scaling-protection-for-subscribers-1-mp3",
+        "name": "Argus Defense - Scaling Protection",
+        "description": "System: local-test | Category: Information | Duration: 65s | Local Test Stream",
+        "audio_url": "http://localhost:3001/assets/Argus%20Defense%20-%20Scaling%20Protection%20for%20Subscribers%201.mp3",
+        "system_name": "local-test",
+        "talkgroup_id": 1005,
+        "timestamp": "2025-10-26T13:52:51.537Z",
+        "duration": 65,
+        "filename": "Argus Defense - Scaling Protection for Subscribers 1.mp3",
+        "src_list": [
+          {
+            "src": 1005,
+            "pos": 0
+          }
+        ],
+        "metadata": {
+          "star_count": 5,
+          "call_id": "local-scaling-005",
+          "talkgroup_info": {
+            "num": 1005,
+            "alpha": "SCALING",
+            "description": "Scaling Protection",
+            "tag": "Scaling",
+            "category": "Information"
+          }
+        },
+        "wallet": {
+          "address": "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
+          "contract_address": null,
+          "mode": "simple",
+          "created_at": "2025-10-26T12:04:00.000Z"
         }
       }
     ],
-    "generated_at": "2025-10-23T20:15:33.000Z"
+    "generated_at": "2025-10-26T13:52:51.537Z"
   },
-  "last_updated": "2025-10-23T20:15:33.000Z"
+  "last_updated": "2025-10-26T13:52:51.537Z"
 }

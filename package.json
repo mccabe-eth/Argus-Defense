@@ -51,7 +51,15 @@
     "vercel": "yarn workspace argus-defense-frontend vercel",
     "vercel:login": "yarn workspace argus-defense-frontend vercel:login",
     "vercel:yolo": "yarn workspace argus-defense-frontend vercel:yolo",
-    "verify": "yarn backend:verify"
+    "verify": "yarn backend:verify",
+    "p2p:start": "cd backend && LIBP2P_AUTO_PUBLISH=true LIBP2P_AUTO_PUBLISH_LIMIT=5 API_PORT=3001 node apiServer.js",
+    "p2p:diagnose": "cd backend && ./diagnose-p2p.sh",
+    "p2p:test": "cd backend && node test-auto-publish.js",
+    "dev:full": "concurrently \"yarn p2p:start\" \"yarn start\"",
+    "dev:frontend": "yarn workspace argus-defense-frontend dev",
+    "dev:backend": "yarn p2p:start",
+    "build:ipfs": "yarn workspace argus-defense-frontend build:ipfs",
+    "deploy:ipfs": "yarn workspace argus-defense-frontend deploy:ipfs"
   },
   "repository": {
     "type": "git",
@@ -86,6 +94,7 @@
     "ws": "^8.18.3"
   },
   "devDependencies": {
+    "concurrently": "^9.1.0",
     "husky": "~9.1.6",
     "lint-staged": "~13.2.2",
     "nodemon": "^3.1.10"

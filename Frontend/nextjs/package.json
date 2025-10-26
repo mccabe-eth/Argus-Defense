@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "build:ipfs": "NEXT_PUBLIC_IPFS_BUILD=true next build",
     "check-types": "tsc --noEmit --incremental",
     "dev": "next dev",
     "format": "prettier --write . '!(node_modules|.next|contracts)/**/*'",
     "ipfs": "NEXT_PUBLIC_IPFS_BUILD=true yarn build && yarn bgipfs upload config init -u https://upload.bgipfs.com && CID=$(yarn bgipfs upload out | grep -o 'CID: [^ ]*' | cut -d' ' -f2) && [ ! -z \"$CID\" ] && echo '🚀 Upload complete! Your site is now available at: https://community.bgipfs.com/ipfs/'$CID || echo '❌ Upload failed'",
+    "deploy:ipfs": "yarn build:ipfs && npx bgipfs upload out",
     "lint": "next lint",
     "serve": "next start",
     "start": "next dev",

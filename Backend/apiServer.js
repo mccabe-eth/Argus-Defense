@@ -17,6 +17,11 @@ const PORT = process.env.API_PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
+// Serve static audio files from Assets folder
+const assetsPath = path.join(__dirname, '..', 'Assets');
+app.use('/assets', express.static(assetsPath));
+console.log(`📁 Serving static assets from: ${assetsPath}`);
+
 // In-memory tracking of active listeners
 const activeListeners = new Map();
 
