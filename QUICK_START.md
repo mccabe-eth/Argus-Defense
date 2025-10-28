@@ -1,13 +1,32 @@
 # Quick Start Guide
 
-## 🚀 Run Everything (Easiest)
+## 🚀 Getting Started
+
+Follow these steps to run the full Argus Defense platform:
 
 ```bash
-# From project root
+# 1. Install dependencies
 yarn install
+
+# 2. Start local blockchain (Terminal 1)
+yarn chain
+
+# 3. Deploy smart contracts (Terminal 2)
+yarn deploy
+
+# 4. Register streams to the contract (Terminal 2)
+yarn register:streams
+
+# 5. Set the contract address (Terminal 2)
+export STREAM_REGISTRY_CONTRACT=0x1291Be112d480055DaFd8a610b7d1e203891C274
+
+# 6. Test registry verification (Terminal 2)
+node backend/scripts/testRegistryVerification.js
+
+# 7. Start backend + frontend (Terminal 3)
 yarn dev:full
 
-# Visit: http://localhost:3000/streams
+# 8. Visit: http://localhost:3000/streams
 ```
 
 ## 📋 All Commands
@@ -27,6 +46,7 @@ yarn p2p:test       # Test auto-publish
 # Blockchain
 yarn chain          # Start local blockchain
 yarn deploy         # Deploy smart contracts
+yarn register:streams  # Register streams to StreamRegistry contract
 ```
 
 ## 💰 Publish a New Stream
@@ -111,8 +131,8 @@ node debug-startup.js
 yarn install
 
 # Or individually
-cd Frontend/nextjs && yarn install
-cd ../../backend && npm install
+cd frontend && yarn install
+cd ../../backend && yarn install
 ```
 
 ## 🌐 Deploy to IPFS

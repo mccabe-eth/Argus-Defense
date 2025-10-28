@@ -6745,9 +6745,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"argus-defense-frontend@workspace:frontend/nextjs":
+"argus-defense-frontend@workspace:frontend":
   version: 0.0.0-use.local
-  resolution: "argus-defense-frontend@workspace:frontend/nextjs"
+  resolution: "argus-defense-frontend@workspace:frontend"
   dependencies:
     "@chainsafe/libp2p-gossipsub": ^14.1.1
     "@chainsafe/libp2p-noise": ^16.1.4

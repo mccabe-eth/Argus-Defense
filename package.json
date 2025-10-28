@@ -7,7 +7,7 @@
   "workspaces": {
     "packages": [
       "backend",
-      "frontend/nextjs"
+      "frontend"
     ]
   },
   "scripts": {
@@ -19,6 +19,7 @@
     "chain": "yarn backend:chain",
     "compile": "yarn backend:compile",
     "deploy": "yarn backend:deploy",
+    "register:streams": "yarn workspace argus-defense-backend hardhat run scripts/registerStreams.ts",
     "fork": "yarn backend:fork",
     "format": "yarn next:format && yarn backend:format",
     "generate": "yarn account:generate",

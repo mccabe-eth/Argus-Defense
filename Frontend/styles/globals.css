@@ -1,0 +1,218 @@
+@import "tailwindcss";
+
+/* Argus Defense Design System - Cyber Security Aesthetic
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Core Cyber Theme - Dark Background */
+    --background: 210 30% 8%;
+    --foreground: 180 100% 90%;
+
+    /* Cards with subtle elevation */
+    --card: 210 25% 12%;
+    --card-foreground: 180 100% 90%;
+
+    /* Popover/Modal elements */
+    --popover: 210 20% 15%;
+    --popover-foreground: 180 100% 90%;
+
+    /* Primary - Argus Cyan Brand */
+    --primary: 180 100% 50%;
+    --primary-foreground: 210 30% 8%;
+    --primary-glow: 180 100% 60%;
+
+    /* Secondary - Muted Cyan */
+    --secondary: 210 25% 16%;
+    --secondary-foreground: 180 80% 75%;
+
+    /* Muted elements */
+    --muted: 210 20% 14%;
+    --muted-foreground: 180 20% 60%;
+
+    /* Accent for highlights */
+    --accent: 180 100% 50%;
+    --accent-foreground: 210 30% 8%;
+
+    /* Threat Level Colors */
+    --threat-low: 120 60% 50%;
+    --threat-medium: 45 100% 60%;
+    --threat-high: 0 85% 60%;
+    --threat-critical: 340 80% 55%;
+
+    /* Destructive */
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Borders and inputs */
+    --border: 210 20% 18%;
+    --input: 210 20% 16%;
+    --ring: 180 100% 50%;
+
+    /* Radius for modern look */
+    --radius: 0.75rem;
+  }
+
+  /* Dark mode is default for security aesthetic */
+  .dark {
+    /* Same as root - dark first approach */
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    color: hsl(var(--foreground));
+    background: linear-gradient(135deg, hsl(210 30% 8%), hsl(210 25% 12%));
+    min-height: 100vh;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Reset all heading and paragraph margins - let Tailwind classes control spacing */
+  h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+  }
+
+  /* Only apply default margins in content areas without explicit Tailwind spacing */
+  article p,
+  section > p,
+  .prose p {
+    margin: 0.5rem 0;
+    line-height: 1.6;
+  }
+
+  article h1,
+  section > h1,
+  .prose h1 {
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+
+  article h2,
+  section > h2,
+  .prose h2 {
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+
+  article h3,
+  article h4,
+  section > h3,
+  section > h4,
+  .prose h3,
+  .prose h4 {
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  /* Cyber grid pattern */
+  .cyber-grid {
+    background-image:
+      linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* Glow effects */
+  .glow-primary {
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.3);
+  }
+
+  .glow-threat {
+    box-shadow: 0 0 20px hsl(var(--threat-high) / 0.4);
+  }
+
+  /* Pulse animation for live data */
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Gradient utilities */
+  .bg-gradient-cyber {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+  }
+
+  .bg-gradient-threat {
+    background: linear-gradient(135deg, hsl(var(--threat-high)), hsl(var(--threat-critical)));
+  }
+
+  .bg-gradient-bg {
+    background: linear-gradient(135deg, hsl(var(--background)), hsl(210 25% 12%));
+  }
+
+  /* Text gradient */
+  .text-gradient-cyber {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* Threat level color utilities */
+.text-threat-low {
+  color: hsl(var(--threat-low));
+}
+
+.text-threat-medium {
+  color: hsl(var(--threat-medium));
+}
+
+.text-threat-high {
+  color: hsl(var(--threat-high));
+}
+
+.text-threat-critical {
+  color: hsl(var(--threat-critical));
+}
+
+.bg-threat-low {
+  background-color: hsl(var(--threat-low));
+}
+
+.bg-threat-medium {
+  background-color: hsl(var(--threat-medium));
+}
+
+.bg-threat-high {
+  background-color: hsl(var(--threat-high));
+}
+
+.bg-threat-critical {
+  background-color: hsl(var(--threat-critical));
+}
+
+.border-primary\/20 {
+  border-color: hsl(var(--primary) / 0.2);
+}
+
+.border-primary\/40 {
+  border-color: hsl(var(--primary) / 0.4);
+}
+
+.border-primary\/50 {
+  border-color: hsl(var(--primary) / 0.5);
+}
+
+.bg-card\/50 {
+  background-color: hsl(var(--card) / 0.5);
+}
+
+.bg-background\/50 {
+  background-color: hsl(var(--background) / 0.5);
+}
+
+.bg-background\/95 {
+  background-color: hsl(var(--background) / 0.95);
+}

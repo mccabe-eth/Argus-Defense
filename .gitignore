@@ -161,7 +161,7 @@ backend/deployments/
 backend/typechain-types/
 
 # Generated frontend contract files
-frontend/nextjs/contracts/
+frontend/contracts/
 
 # Chain data (local blockchain state)
 backend/.chainId

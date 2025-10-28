@@ -1,161 +1,137 @@
 # Argus Defense
 
-**Fully Decentralized P2P Emergency Radio Streaming**
+**Decentralized P2P Emergency Radio Streaming Platform**
 
 ETHOnline Hackathon 2025
 
-A censorship-resistant platform for streaming emergency radio communications using libp2p. No central servers, no single point of failure.
+Censorship-resistant platform for streaming emergency radio using libp2p and blockchain-verified ownership.
+
+## Table of Contents
+
+- [Features](#features)
+- [Quick Start](#quick-start)
+- [Architecture](#architecture)
+- [Documentation](#documentation)
+- [Development](#development)
+- [Deployment](#deployment)
+- [Project Structure](#project-structure)
+- [Commands](#commands)
+- [Support](#support)
 
 ## Features
 
-- **100% Decentralized** - Runs on libp2p P2P network, no central servers
-- **Censorship Resistant** - IPFS-hosted frontend, distributed backend nodes
-- **Global Discovery** - Automatic stream discovery via GossipSub pubsub
-- **Real-time Streaming** - Live audio streaming directly peer-to-peer
-- **Emergency Focused** - Fire, Police, EMS radio communications
-- **Web3 Integration** - Wallet support for stream monetization
+- **100% Decentralized** - libp2p P2P network, no central servers
+- **Blockchain Verified** - StreamRegistry smart contract validates ownership
+- **Real-time Streaming** - Live audio via GossipSub pubsub
+- **Self-Paying Streams** - 60% publisher, 30% bandwidth, 10% DAO
+- **IPFS Frontend** - Distributed, censorship-resistant UI
 
-## Quick Start (P2P Mode)
-
-### 1. Start Backend (Publisher Node)
+## Quick Start
 
 ```bash
-cd Backend
-npm install
-./start-p2p.sh
+# Install dependencies
+yarn install
+
+# Start local blockchain
+yarn chain
+
+# Deploy contracts
+yarn deploy
+
+# Register streams
+yarn register:streams
+
+# Set contract address
+export STREAM_REGISTRY_CONTRACT=0x1291Be112d480055DaFd8a610b7d1e203891C274
+
+# Test verification
+node backend/scripts/testRegistryVerification.js
+
+# Start backend + frontend
+yarn dev:full
+
+# Visit: http://localhost:3000/streams
 ```
 
-This starts a libp2p node that publishes radio streams to the P2P network.
+## Architecture
 
-### 2. Start Frontend (in new terminal)
+```
+Frontend (IPFS)
+    ↓
+libp2p Network (P2P Discovery)
+    ↓
+Backend Nodes (Anyone can run)
+    ↓
+StreamRegistry (Ethereum)
+```
+
+## Documentation
+
+- **[QUICK_START.md](QUICK_START.md)** - Get running in 5 minutes
+
+### Component Guides
+- **[backend/README.md](backend/README.md)** - Backend publisher node
+- **[backend/libp2p/README.md](backend/libp2p/README.md)** - P2P networking layer
+- **[backend/openmhz/README.md](backend/openmhz/README.md)** - Stream ingestion from OpenMHz
+- **[backend/sdr/README.md](backend/sdr/README.md)** - Local SDR capture
+- **[frontend/README.md](frontend/README.md)** - Browser P2P client
+
+### Technical Documentation
+- **[Documents/ARCHITECTURE.md](Documents/ARCHITECTURE.md)** - System architecture and data flow
+- **[Documents/DEPLOYMENT.md](Documents/DEPLOYMENT.md)** - Production deployment guide
+- **[Documents/SMART_CONTRACTS.md](Documents/SMART_CONTRACTS.md)** - Smart contract integration
+- **[Documents/INCENTIVES.md](Documents/INCENTIVES.md)** - Economic model and revenue splits
+- **[Documents/DAILY_LOG.md](Documents/DAILY_LOG.md)** - Development history
+- **[Documents/DELETE_COMMANDS.md](Documents/DELETE_COMMANDS.md)** - Cleanup guide for package.json
+
+## Development
 
 ```bash
-cd Frontend/nextjs
-npm install
-npm run dev
+yarn dev:full          # Run everything
+yarn p2p:start         # Backend only
+yarn dev:frontend      # Frontend only
+yarn p2p:diagnose      # Check system health
 ```
-
-### 3. Open Browser
-
-Visit **http://localhost:3000/streams**
-
-You should see streams appear within 30 seconds!
-
-## How It Works
-
-1. Backend nodes ingest radio streams from OpenMHz (or local SDR)
-2. Backend announces streams to global directory via libp2p pubsub
-3. Browsers start libp2p nodes and query the directory
-4. Users click "Listen P2P" to subscribe to stream topics
-5. Audio chunks stream directly peer-to-peer in real-time
 
 ## Deployment
 
-See [DEPLOYMENT.md](DEPLOYMENT.md) for full production deployment guide.
-
----
-
-## Legacy Setup (Python + Node.js)
-
-Argus Defense also includes legacy Python components for SDR capture and data processing.
-
-### 1. Clone the Repository
 ```bash
-git clone https://github.com/mccabe-eth/Argus-Defense.git
-cd Argus-Defense
+# Build for IPFS
+yarn build:ipfs
+
+# Deploy to IPFS
+yarn deploy:ipfs
+
+# Deploy backend to VPS
+git clone <repo> && cd backend && yarn install
+export STREAM_REGISTRY_CONTRACT=0x...
+pm2 start apiServer.js
 ```
 
-### 2. Run Setup Script
-macOS / Linux
-```bash
-chmod +x setup.sh
-source setup.sh
+## Project Structure
+
+```
+/
+├── backend/          # P2P publisher nodes
+├── frontend/         # Browser-based P2P listeners
+├── Documents/        # Technical documentation
+└── Assets/           # Audio files
 ```
 
-Windows (PowerShell)
-```bash
-Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
-./setup.ps1
-```
+## Commands
 
-These scripts will:
+| Command | Description |
+|---------|-------------|
+| `yarn chain` | Start local blockchain |
+| `yarn deploy` | Deploy StreamRegistry |
+| `yarn register:streams` | Register streams on-chain |
+| `yarn dev:full` | Run backend + frontend |
+| `yarn build:ipfs` | Build static site |
+| `yarn deploy:ipfs` | Upload to IPFS |
 
-Create and activate a Python virtual environment (venv/)
+## Support
 
-Install all Python dependencies from requirements.txt
+- Issues: [GitHub Issues](https://github.com/mccabe-eth/Argus-Defense/issues)
+- Docs: [QUICK_START.md](QUICK_START.md)
 
-Install all Node.js dependencies from package.json
-
-### 3. Verify Installation
-Check Python Environment
-
-Make sure your virtual environment is active:
-```bash
-which python
-```
-
-It should show a path like:
-```bash
-.../Argus-Defense/venv/bin/python
-```
-
-Then verify dependencies:
-```bash
-pip list
-```
-
-Check Node.js Environment
-
-Verify Node.js version:
-```bash
-node -v
-```
-
-Confirm packages installed correctly:
-```bash
-yarn info --name-only
-```
-
-### 4. Run the Project
-
-Run:
-```bash
-yarn chain
-```
-
-Open new terminal and run:
-```bash
-yarn deploy
-```
-
-Open new terminal and run:
-```bash
-yarn start
-```
-
-If your project includes a Python backend:
-```bash
-python app.py
-```
-
-Both should start without errors.
-
-### 5. Verify Everything is Working
-
-No errors or missing module warnings in the terminal.
-
-Both Python and Node servers (if applicable) start correctly.
-
-venv/ and node_modules/ exist locally but are not committed (check .gitignore).
-
-### 6. Deactivate and Cleanup
-
-When finished:
-```bash
-deactivate
-```
-
-To clean your environment completely:
-```bash
-rm -rf venv node_modules
-```
+Built with Next.js, libp2p, Hardhat, and Ethereum.
