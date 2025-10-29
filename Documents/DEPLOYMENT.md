@@ -55,7 +55,49 @@ pm2 startup
 
 Recommended: Run 3+ nodes on different servers for redundancy.
 
-### 3. Deploy Frontend to IPFS
+### 3. Configure Web3 for IPFS
+
+**IMPORTANT:** Before deploying to IPFS, configure production environment variables.
+
+Create `frontend/.env.local`:
+
+```bash
+# Required for IPFS deployment
+NEXT_PUBLIC_IPFS_BUILD=true
+
+# Get your own API keys (don't use defaults in production)
+NEXT_PUBLIC_ALCHEMY_API_KEY=your-alchemy-api-key
+NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID=your-walletconnect-project-id
+```
+
+**Get API Keys:**
+- **Alchemy:** https://dashboard.alchemyapi.io (for RPC access)
+- **WalletConnect:** https://cloud.walletconnect.com (for wallet connections)
+
+**Configure Production Networks:**
+
+The app is already configured to use Sepolia testnet and Mainnet when building for IPFS. To change networks, edit `frontend/scaffold.config.ts`.
+
+**Add Production Contract Addresses:**
+
+After deploying contracts to production networks (see step 1), add addresses to `frontend/contracts/externalContracts.ts`:
+
+```typescript
+const externalContracts = {
+  11155111: {  // Sepolia
+    StreamFactory: {
+      address: "0xYourDeployedAddress",
+      abi: [...],  // Copy from deployedContracts.ts
+    },
+    StreamRegistry: {
+      address: "0xYourDeployedAddress",
+      abi: [...],
+    },
+  },
+} as const;
+```
+
+### 4. Deploy Frontend to IPFS
 
 ```bash
 # First time deployment (initializes config + builds + uploads):
@@ -120,7 +162,7 @@ If you get "504 Gateway Timeout" when accessing your CID:
 
 **Note:** Gateway timeouts are usually temporary. The content is available on IPFS (BuildGuild pins it), but public gateways can be slow or overloaded. Wait a few minutes and try a different gateway, or use IPFS Desktop for instant access.
 
-### 4. Configure Bootstrap Peers
+### 5. Configure Bootstrap Peers
 
 Update `frontend/lib/libp2p/browserNode.ts`:
 
@@ -216,6 +258,22 @@ sudo ufw status
 rm -rf .next out
 yarn build:ipfs
 ```
+
+**Wallet won't connect on IPFS:**
+- Check `NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID` is set (get from https://cloud.walletconnect.com)
+- Try MetaMask directly (doesn't require WalletConnect)
+- Clear browser cache and try again
+
+**"Network not supported" error:**
+- Switch wallet to configured network (Sepolia/Mainnet for IPFS builds)
+- Check `frontend/scaffold.config.ts` for targetNetworks
+- Make sure you deployed contracts to the active network
+
+**Contract interactions fail:**
+- Verify contract addresses in `frontend/contracts/externalContracts.ts`
+- Check chain ID matches (11155111 for Sepolia, 1 for Mainnet)
+- Ensure contracts are actually deployed and verified on block explorer
+- Get your own Alchemy API key (default is rate-limited)
 
 ## Custom Domain (Optional)
 

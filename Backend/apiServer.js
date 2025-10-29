@@ -608,9 +608,13 @@ async function autoPublishNewStreams() {
 
     // Ensure libp2p is initialized
     if (!libp2pInitialized) {
+      console.log('🔄 Initializing libp2p publisher...');
       await libp2pService.startPublisher();
       libp2pInitialized = true;
-      console.log('🚀 libp2p auto-publisher started');
+      console.log('✅ libp2p auto-publisher started and ready');
+
+      // Give the publisher a moment to fully initialize
+      await new Promise(resolve => setTimeout(resolve, 1000));
     }
 
     const currentStreams = new Set();
@@ -682,12 +686,7 @@ function startStreamsWatcher() {
 
   const streamsPath = path.join(__dirname, 'openmhz/streams.json');
 
-  // Initial scan
-  autoPublishNewStreams().catch(error => {
-    console.error('Error in initial auto-publish:', error);
-  });
-
-  // Watch for file changes
+  // Watch for file changes (no initial scan here - it's done in server listen callback)
   streamsWatcher = fsSync.watch(streamsPath, (eventType) => {
     if (eventType === 'change') {
       console.log('📝 Detected streams.json update');
@@ -710,8 +709,20 @@ function stopStreamsWatcher() {
 }
 
 // Start the server
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`\n🚀 Argus Defense API Server running on http://localhost:${PORT}`);
+  
+  // Auto-initialize libp2p and start publishing if enabled
+  if (AUTO_PUBLISH_ENABLED) {
+    try {
+      console.log('\n🔄 Initializing libp2p auto-publish on startup...');
+      await autoPublishNewStreams();
+      console.log('✓ Auto-publish initialized and watching for streams');
+    } catch (error) {
+      console.error('❌ Failed to initialize auto-publish:', error.message);
+    }
+  }
+
   console.log('\nAvailable endpoints:');
   console.log(`  GET  http://localhost:${PORT}/api/streams`);
   console.log(`  GET  http://localhost:${PORT}/api/streams/:systemId`);
@@ -732,8 +743,10 @@ app.listen(PORT, () => {
   console.log(`  GET  http://localhost:${PORT}/api/libp2p/directory/discovered`);
   console.log('\n');
 
-  // Start auto-publish watcher if enabled
-  startStreamsWatcher();
+  // Start file watcher for streams.json changes (already called autoPublishNewStreams above)
+  if (AUTO_PUBLISH_ENABLED) {
+    startStreamsWatcher();
+  }
 });
 
 // Graceful shutdown

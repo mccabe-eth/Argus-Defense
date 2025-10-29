@@ -258,6 +258,8 @@ export class StreamDirectory {
         return;
       }
 
+      console.log(`[DEBUG-BACKEND] Received ${message.type} from ${fromPeer.slice(0, 20)}...`);
+
       switch (message.type) {
         case MessageType.ANNOUNCE:
           this.handleAnnouncement(message, fromPeer);
@@ -297,6 +299,7 @@ export class StreamDirectory {
     const { streamId, metadata } = message;
 
     console.log(`📢 Discovered stream: ${streamId} from ${fromPeer.slice(0, 20)}...`);
+    console.log(`   Name: ${metadata.name}, Category: ${metadata.category}`);
 
     this.discoveredStreams.set(streamId, {
       metadata,

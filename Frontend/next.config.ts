@@ -24,6 +24,11 @@ if (isIpfs) {
   nextConfig.images = {
     unoptimized: true,
   };
+
+  // Note: basePath is NOT needed for standard IPFS deployments
+  // IPFS gateways handle the /ipfs/<CID>/ prefix automatically
+  // Only set basePath if deploying to a subdirectory like /app
+  // Example: nextConfig.basePath = "/app";
 }
 
 module.exports = nextConfig;

@@ -218,6 +218,8 @@ export class BrowserStreamDirectory {
         return;
       }
 
+      console.log(`[DEBUG] Received ${message.type} message from ${fromPeer.slice(0, 20)}...`);
+
       switch (message.type) {
         case MessageType.ANNOUNCE:
           this.handleAnnouncement(message, fromPeer);
@@ -253,6 +255,7 @@ export class BrowserStreamDirectory {
     if (!message.streamId || !message.metadata) return;
 
     console.log(`📢 Discovered stream: ${message.streamId} from ${_fromPeer.slice(0, 20)}...`);
+    console.log(`   Name: ${message.metadata.name}, Category: ${message.metadata.category}`);
 
     this.discoveredStreams.set(message.streamId, {
       metadata: message.metadata,

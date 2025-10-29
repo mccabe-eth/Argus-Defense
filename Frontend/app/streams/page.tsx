@@ -57,9 +57,64 @@ const StreamsPage: NextPage = () => {
 
         setDirectory(dir);
 
-        // Query for streams
-        console.log("🔍 Querying global stream directory...");
-        const discoveredStreams = await dir.queryStreams();
+        // For localhost development: fetch streams from REST API
+        if (typeof window !== "undefined" && window.location.hostname === "localhost") {
+          console.log("🔌 Development mode: fetching streams from local API...");
+          try {
+            const response = await fetch("http://localhost:3001/api/streams");
+            if (response.ok) {
+              const data = await response.json();
+              const apiStreams = data.streams.map((s: any) => ({
+                name: s.name,
+                streamId: s.stream_id,
+                metadata: {
+                  system_name: s.system_name,
+                  talkgroup_id: s.talkgroup_id,
+                  duration: s.duration,
+                  timestamp: s.timestamp,
+                  wallet: s.wallet,
+                  ...s.metadata
+                }
+              }));
+              console.log(`✅ Loaded ${apiStreams.length} streams from local API`);
+              setStreams(apiStreams);
+              setLoading(false);
+              console.log("✅ P2P initialization complete (local mode)");
+              return;
+            }
+          } catch (err) {
+            console.warn("⚠️ Could not fetch from local API, falling back to P2P discovery", err);
+          }
+        }
+
+        // Wait for peer discovery and stream announcements (P2P production mode)
+        console.log("⏳ Waiting for P2P peer discovery and stream announcements...");
+        const startDiscovery = Date.now();
+        let discoveredCount = 0;
+
+        while (Date.now() - startDiscovery < 12000) {
+          const peers = p2pNode.getPeers();
+          const streams = dir.getDiscoveredStreams();
+          console.log(`[DEBUG] Discovery loop - Peers: ${peers.length}, Streams: ${streams.length}`);
+
+          if (streams.length > discoveredCount) {
+            discoveredCount = streams.length;
+            console.log(`📢 New streams discovered via P2P: ${discoveredCount}`);
+            setStreams(streams);  // Update in real-time
+          }
+
+          if (peers.length === 0) {
+            console.log("⏳ Still waiting for peer connections...");
+          } else if (streams.length === 0) {
+            console.log(`✓ Connected to ${peers.length} peer(s), waiting for stream announcements...`);
+          }
+
+          await new Promise(r => setTimeout(r, 500));
+        }
+
+        // Final query for streams
+        console.log("🔍 Final stream discovery query...");
+        const discoveredStreams = dir.getDiscoveredStreams();
         setStreams(discoveredStreams);
 
         setLoading(false);

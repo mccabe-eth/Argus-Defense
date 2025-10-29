@@ -5,8 +5,6 @@
 
 import { createLibp2p } from 'libp2p';
 import { tcp } from '@libp2p/tcp';
-import { webSockets } from '@libp2p/websockets';
-import * as filters from '@libp2p/websockets/filters';
 import { mplex } from '@libp2p/mplex';
 import { noise } from '@chainsafe/libp2p-noise';
 import { gossipsub } from '@chainsafe/libp2p-gossipsub';
@@ -46,8 +44,7 @@ export async function createNode(options = {}) {
       listen: listenAddrs
     },
     transports: [
-      tcp(),
-      webSockets()  // WebSocket for browser compatibility
+      tcp()
     ],
     connectionEncrypters: [
       noise()
@@ -70,16 +67,7 @@ export async function createNode(options = {}) {
         // Enable message signing for authenticity
         signMessages: true,
         // Strict message signing validation
-        strictSigning: true,
-        // Enable flood publishing (helps with initial discovery)
-        floodPublish: true,
-        // Improve gossip heartbeat interval
-        heartbeatInterval: 1000,
-        // Ensure messages propagate even with few peers
-        scoreParams: {
-          topicScoreCap: 32.72,
-          appSpecificScore: 1.0
-        }
+        strictSigning: true
       }),
       dht: kadDHT({
         clientMode: false
@@ -197,10 +185,6 @@ export async function publishToTopic(node, topic, message) {
   } else {
     data = message;
   }
-
-  // Get subscriber count before publishing
-  const peers = getTopicPeers(node, topic);
-  console.log(`[DEBUG] Publishing to ${topic} (${peers.length} subscribers)`);
 
   // Publish the message
   await pubsub.publish(topic, data);
