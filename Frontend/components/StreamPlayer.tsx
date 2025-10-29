@@ -4,8 +4,8 @@
  */
 "use client";
 
-import { useEffect } from "react";
-import { PlayIcon, SignalIcon, StopIcon, UserGroupIcon } from "@heroicons/react/24/outline";
+import { useEffect, useState, useRef } from "react";
+import { PlayIcon, SignalIcon, StopIcon, PauseIcon, MapPinIcon, WalletIcon } from "@heroicons/react/24/outline";
 import { useLibp2pStream } from "~~/hooks/useLibp2pStream";
 
 export interface StreamData {
@@ -26,27 +26,98 @@ export interface StreamPlayerProps {
  * Pure P2P Stream Player Component
  */
 export function StreamPlayer({ stream, onStop, autoConnect = true }: StreamPlayerProps) {
-  const { status, audioChunks, connect, subscribe, unsubscribe, play, pause, peerId } = useLibp2pStream();
+  const { status, connect, subscribe, unsubscribe, play, pause } = useLibp2pStream();
+  const [isLocalhost, setIsLocalhost] = useState(false);
+  const [localPlaying, setLocalPlaying] = useState(false);
+  const localAudioRef = useRef<HTMLAudioElement | null>(null);
 
-  // Auto-connect and subscribe
+  // Check if we're on localhost
   useEffect(() => {
-    if (autoConnect && !status.connected) {
-      connect();
+    if (typeof window !== "undefined") {
+      setIsLocalhost(window.location.hostname === "localhost");
     }
-  }, [autoConnect, status.connected, connect]);
+  }, []);
 
-  useEffect(() => {
-    if (status.connected && !status.subscribed) {
-      subscribe(stream.streamId);
+  // Localhost audio player handlers
+  const handleLocalPlayPause = async () => {
+    if (!localAudioRef.current) {
+      // Create audio element
+      localAudioRef.current = new Audio();
+
+      // Get audio URL from stream metadata
+      const audioUrl = stream.metadata?.audioUrl || stream.metadata?.audio_url;
+      if (!audioUrl) {
+        console.error("No audio URL found in stream metadata");
+        return;
+      }
+
+      localAudioRef.current.src = audioUrl;
+      localAudioRef.current.addEventListener("ended", () => setLocalPlaying(false));
+      localAudioRef.current.addEventListener("pause", () => setLocalPlaying(false));
+      localAudioRef.current.addEventListener("play", () => setLocalPlaying(true));
     }
-  }, [status.connected, status.subscribed, stream.streamId, subscribe]);
+
+    if (localPlaying) {
+      localAudioRef.current.pause();
+    } else {
+      try {
+        await localAudioRef.current.play();
+      } catch (err) {
+        console.error("Failed to play audio:", err);
+      }
+    }
+  };
+
+  const handleLocalStop = () => {
+    if (localAudioRef.current) {
+      localAudioRef.current.pause();
+      localAudioRef.current.currentTime = 0;
+      setLocalPlaying(false);
+    }
+    onStop?.();
+  };
 
   // Cleanup on unmount
   useEffect(() => {
     return () => {
-      unsubscribe();
+      if (localAudioRef.current) {
+        localAudioRef.current.pause();
+        localAudioRef.current = null;
+      }
     };
-  }, [unsubscribe]);
+  }, []);
+
+  // Auto-connect and subscribe (only in production)
+  useEffect(() => {
+    if (isLocalhost) {
+      // Skip P2P in localhost mode
+      return;
+    }
+
+    if (autoConnect && !status.connected) {
+      connect();
+    }
+  }, [autoConnect, status.connected, connect, isLocalhost]);
+
+  useEffect(() => {
+    if (isLocalhost) {
+      // Skip P2P in localhost mode
+      return;
+    }
+
+    if (status.connected && !status.subscribed) {
+      subscribe(stream.streamId);
+    }
+  }, [status.connected, status.subscribed, stream.streamId, subscribe, isLocalhost]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (!isLocalhost) {
+        unsubscribe();
+      }
+    };
+  }, [unsubscribe, isLocalhost]);
 
   const handlePlayPause = () => {
     if (status.playing) {
@@ -61,121 +132,94 @@ export function StreamPlayer({ stream, onStop, autoConnect = true }: StreamPlaye
     onStop?.();
   };
 
-  const formatBytes = (bytes: number) => {
-    if (bytes === 0) return "0 B";
-    const k = 1024;
-    const sizes = ["B", "KB", "MB"];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + " " + sizes[i];
+  const handleConnect = () => {
+    if (!isLocalhost) {
+      connect();
+    }
   };
 
+  // Unified state for both modes
+  const isPlaying = isLocalhost ? localPlaying : status.playing;
+  const isConnected = isLocalhost ? true : status.connected;
+  const handlePlay = isLocalhost ? handleLocalPlayPause : handlePlayPause;
+  const handleStopClick = isLocalhost ? handleLocalStop : handleStop;
+
   return (
-    <div className="card bg-base-200/50 backdrop-blur-sm border border-primary/20">
-      <div className="card-body p-4">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-2">
-            <SignalIcon className="h-5 w-5 text-secondary animate-pulse" />
-            <span className="font-semibold text-sm">P2P Stream</span>
+    <div className="bg-base-100 rounded-lg p-4 border border-primary shadow-lg">
+      <div className="flex items-center justify-between">
+        <div className="flex-1 pr-4">
+          <h3 className="font-semibold text-lg mb-2">{stream.name}</h3>
+
+          {/* Category and System */}
+          <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
+            {stream.metadata?.category && (
+              <span className="text-primary font-medium">{stream.metadata.category}</span>
+            )}
+            {stream.metadata?.system_name && (
+              <>
+                <span>•</span>
+                <span>{stream.metadata.system_name}</span>
+              </>
+            )}
+            <span>•</span>
+            <span className={`badge badge-sm ${isLocalhost ? "badge-secondary" : "badge-success"}`}>
+              {isLocalhost ? "Local" : "P2P"}
+            </span>
+            {!isLocalhost && isConnected && (
+              <>
+                <span>•</span>
+                <span className="text-gray-500">{status.peerCount} peers</span>
+              </>
+            )}
           </div>
 
-          {/* Connection Status */}
-          {status.connected ? (
-            <div className="badge badge-success badge-sm gap-1">
-              <div className="w-2 h-2 rounded-full bg-success-content animate-pulse"></div>
-              Connected
+          {/* Location */}
+          {stream.metadata?.location && (
+            <div className="flex items-center gap-1.5 text-xs text-gray-500 mb-1">
+              <MapPinIcon className="h-3.5 w-3.5" />
+              <span>{stream.metadata.location}</span>
             </div>
-          ) : (
-            <div className="badge badge-warning badge-sm gap-1">
-              <div className="loading loading-spinner loading-xs"></div>
-              Connecting...
+          )}
+
+          {/* Frequency */}
+          {stream.metadata?.frequency && (
+            <div className="flex items-center gap-1.5 text-xs text-gray-500 mb-1">
+              <SignalIcon className="h-3.5 w-3.5" />
+              <span>{stream.metadata.frequency}</span>
+            </div>
+          )}
+
+          {/* Wallet Balance */}
+          {stream.metadata?.wallet?.balance && (
+            <div className="flex items-center gap-1.5 text-xs text-success">
+              <WalletIcon className="h-3.5 w-3.5" />
+              <span>{stream.metadata.wallet.balance}</span>
             </div>
           )}
         </div>
 
-        {/* Error Display */}
-        {status.error && (
-          <div className="alert alert-error alert-sm mb-3">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="stroke-current shrink-0 h-4 w-4"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <span className="text-xs">{status.error}</span>
-          </div>
-        )}
-
-        {/* Stream Info */}
-        {status.subscribed && (
-          <div className="grid grid-cols-3 gap-2 mb-3">
-            <div className="stat bg-base-300 rounded-lg p-2">
-              <div className="stat-title text-xs">Peers</div>
-              <div className="stat-value text-lg flex items-center gap-1">
-                <UserGroupIcon className="h-4 w-4" />
-                {status.peerCount}
-              </div>
-            </div>
-            <div className="stat bg-base-300 rounded-lg p-2">
-              <div className="stat-title text-xs">Received</div>
-              <div className="stat-value text-sm">{formatBytes(status.bytesReceived)}</div>
-            </div>
-            <div className="stat bg-base-300 rounded-lg p-2">
-              <div className="stat-title text-xs">Chunks</div>
-              <div className="stat-value text-sm">{status.chunksReceived}</div>
-            </div>
-          </div>
-        )}
-
-        {/* Playback Controls */}
-        <div className="flex items-center justify-between gap-2">
-          <div className="text-xs text-gray-500">
-            {status.subscribed ? (
-              audioChunks.length > 0 ? (
-                <span className="text-success">{audioChunks.length} chunks ready</span>
-              ) : (
-                <span className="flex items-center gap-1">
-                  <div className="loading loading-spinner loading-xs"></div>
-                  Buffering...
-                </span>
-              )
-            ) : (
-              <span>Initializing...</span>
-            )}
-          </div>
-
-          <div className="flex gap-2">
-            {status.playing ? (
-              <button className="btn btn-error btn-sm" onClick={pause}>
-                <StopIcon className="h-4 w-4" />
-                Pause
-              </button>
-            ) : (
-              <button
-                className="btn btn-primary btn-sm"
-                onClick={handlePlayPause}
-                disabled={!status.subscribed || audioChunks.length === 0}
-              >
-                <PlayIcon className="h-4 w-4" />
-                Play
-              </button>
-            )}
-
-            <button className="btn btn-ghost btn-sm" onClick={handleStop}>
-              Stop
+        <div className="flex gap-2">
+          {!isLocalhost && !isConnected ? (
+            <button className="btn btn-primary gap-2" onClick={handleConnect}>
+              <SignalIcon className="h-5 w-5" />
+              Connect
             </button>
-          </div>
+          ) : (
+            <>
+              <button
+                className={`btn btn-circle btn-lg ${isPlaying ? "btn-warning" : "btn-success"}`}
+                onClick={handlePlay}
+              >
+                {isPlaying ? <PauseIcon className="h-6 w-6" /> : <PlayIcon className="h-6 w-6" />}
+              </button>
+              {isPlaying && (
+                <button className="btn btn-circle btn-lg btn-error" onClick={handleStopClick}>
+                  <StopIcon className="h-6 w-6" />
+                </button>
+              )}
+            </>
+          )}
         </div>
-
-        {/* Peer ID */}
-        {peerId && <div className="text-xs text-gray-500 mt-2 truncate font-mono">Node: {peerId.slice(0, 20)}...</div>}
       </div>
     </div>
   );

@@ -34,7 +34,7 @@ export const BOOTSTRAP_PEERS = [
  */
 export async function createNode(options = {}) {
   // Convert string addresses to multiaddr objects
-  const defaultAddrs = [multiaddr('/ip4/0.0.0.0/tcp/0')];
+  const defaultAddrs = [multiaddr('/ip4/0.0.0.0/tcp/9001')];
   const listenAddrs = options.listen
     ? (Array.isArray(options.listen) ? options.listen.map(addr =>
         typeof addr === 'string' ? multiaddr(addr) : addr

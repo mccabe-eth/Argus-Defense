@@ -11,11 +11,10 @@ import { identify } from "@libp2p/identify";
 import { webSockets } from "@libp2p/websockets";
 import { Libp2p, createLibp2p } from "libp2p";
 import { toString } from "uint8arrays";
-import { multiaddr } from "@multiformats/multiaddr";
 
 /**
  * Bootstrap peers for peer discovery
- * Includes both public bootstrap nodes and local backend (for development)
+ * Uses public libp2p bootstrap nodes for global peer discovery
  */
 const BOOTSTRAP_PEERS = [
   "/dnsaddr/bootstrap.libp2p.io/p2p/QmNnooDu7bfjPFoTZYxMNLWUQJyrVwtbZg5gBMjTezGAJN",
@@ -23,12 +22,6 @@ const BOOTSTRAP_PEERS = [
   "/dnsaddr/bootstrap.libp2p.io/p2p/QmbLHAnMoJPWSCR5Zhtx6BHJX9KiKNN6tpvbUcqanj75Nb",
   "/dnsaddr/bootstrap.libp2p.io/p2p/QmcZf59bWwK5XFi76CZX8cbJ4BhTzzA3gU1ZjYZcYW3dwt",
 ];
-
-/**
- * Get local backend WebSocket address (for development)
- * The Peer ID will be discovered via the directory service
- */
-const LOCAL_BACKEND_WS = "ws://127.0.0.1:9002";
 
 export interface StreamMessage {
   type: "metadata" | "audio" | "iq_data" | "end";
@@ -105,28 +98,9 @@ export async function startBrowserNode(config?: BrowserNodeConfig): Promise<Libp
     console.log(`👋 Disconnected from peer: ${evt.detail.toString()}`);
   });
 
-  // Try to connect to local backend (development mode)
-  // This allows browser to discover local streams without needing public backend
-  if (typeof window !== "undefined" && window.location.hostname === "localhost") {
-    console.log("🔌 Attempting to connect to local backend...");
-
-    // First, fetch the backend's peer ID from the API
-    try {
-      const response = await fetch("http://localhost:3001/api/libp2p/status");
-      if (response.ok) {
-        const status = await response.json();
-        const backendPeerId = status.peerId;
-        const backendAddr = multiaddr(`/ip4/127.0.0.1/tcp/9002/ws/p2p/${backendPeerId}`);
-
-        console.log(`📡 Dialing local backend at: ${backendAddr.toString()}`);
-        await node.dial(backendAddr);
-        console.log("✅ Connected to local backend!");
-      }
-    } catch (err) {
-      console.warn("⚠️ Could not connect to local backend:", err);
-      console.log("   This is normal if backend is not running or on a different machine");
-    }
-  }
+  // Note: For local development, we use REST API to fetch stream metadata
+  // (see streams/page.tsx). For production IPFS deployment, streams are
+  // discovered via P2P pubsub using the global bootstrap peers above.
 
   return node;
 }

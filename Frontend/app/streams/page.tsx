@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { Libp2p } from "libp2p";
 import type { NextPage } from "next";
-import { FunnelIcon, GlobeAltIcon, MagnifyingGlassIcon, SignalIcon, UserGroupIcon } from "@heroicons/react/24/outline";
+import { FunnelIcon, GlobeAltIcon, MagnifyingGlassIcon, MapPinIcon, PlayIcon, SignalIcon, UserGroupIcon, WalletIcon } from "@heroicons/react/24/outline";
 import { Footer } from "~~/components/Footer";
 import { Header } from "~~/components/Header";
 import { StreamPlayer } from "~~/components/StreamPlayer";
@@ -32,6 +32,46 @@ const StreamsPage: NextPage = () => {
         setLoading(true);
         setError(null);
 
+        // For localhost development: fetch streams from REST API (skip P2P entirely)
+        if (typeof window !== "undefined" && window.location.hostname === "localhost") {
+          console.log("🔌 Development mode: fetching streams from local API...");
+          try {
+            const response = await fetch("http://localhost:3001/api/streams");
+            if (response.ok) {
+              const data = await response.json();
+              const apiStreams = data.streams.map((s: any) => ({
+                name: s.name,
+                streamId: s.stream_id,
+                publisher: s.wallet?.address || "unknown",
+                lastSeen: Date.now(),
+                age: Date.now() - new Date(s.timestamp).getTime(),
+                metadata: {
+                  name: s.name,
+                  audio_url: s.audio_url,
+                  audioUrl: s.audio_url,
+                  system_name: s.system_name,
+                  talkgroup_id: s.talkgroup_id,
+                  duration: s.duration,
+                  timestamp: s.timestamp,
+                  location: s.location,
+                  frequency: s.frequency,
+                  coordinates: s.coordinates,
+                  wallet: s.wallet,
+                  category: s.metadata?.talkgroup_info?.category,
+                  ...s.metadata
+                }
+              }));
+              console.log(`✅ Loaded ${apiStreams.length} streams from local API`);
+              setStreams(apiStreams);
+              setLoading(false);
+              console.log("✅ Initialization complete (local mode - P2P disabled)");
+              return;
+            }
+          } catch (err) {
+            console.warn("⚠️ Could not fetch from local API, falling back to P2P discovery", err);
+          }
+        }
+
         console.log("🚀 Starting libp2p browser node...");
 
         // Start libp2p node
@@ -56,36 +96,6 @@ const StreamsPage: NextPage = () => {
         }
 
         setDirectory(dir);
-
-        // For localhost development: fetch streams from REST API
-        if (typeof window !== "undefined" && window.location.hostname === "localhost") {
-          console.log("🔌 Development mode: fetching streams from local API...");
-          try {
-            const response = await fetch("http://localhost:3001/api/streams");
-            if (response.ok) {
-              const data = await response.json();
-              const apiStreams = data.streams.map((s: any) => ({
-                name: s.name,
-                streamId: s.stream_id,
-                metadata: {
-                  system_name: s.system_name,
-                  talkgroup_id: s.talkgroup_id,
-                  duration: s.duration,
-                  timestamp: s.timestamp,
-                  wallet: s.wallet,
-                  ...s.metadata
-                }
-              }));
-              console.log(`✅ Loaded ${apiStreams.length} streams from local API`);
-              setStreams(apiStreams);
-              setLoading(false);
-              console.log("✅ P2P initialization complete (local mode)");
-              return;
-            }
-          } catch (err) {
-            console.warn("⚠️ Could not fetch from local API, falling back to P2P discovery", err);
-          }
-        }
 
         // Wait for peer discovery and stream announcements (P2P production mode)
         console.log("⏳ Waiting for P2P peer discovery and stream announcements...");
@@ -389,72 +399,77 @@ const StreamsPage: NextPage = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredStreams.map(stream => (
-                <div
-                  key={stream.streamId}
-                  className={`card bg-base-100 shadow-xl hover:shadow-2xl transition-all ${
-                    playingStreamId === stream.streamId ? "ring-2 ring-primary" : ""
-                  }`}
-                >
-                  <div className="card-body">
-                    {/* Header */}
-                    <div className="flex justify-between items-start mb-2">
-                      <div className="flex-1">
-                        <h2 className="card-title text-lg">{stream.metadata?.name || stream.streamId}</h2>
-                        {stream.metadata?.category && (
-                          <div className="badge badge-primary badge-sm mt-1">{stream.metadata.category}</div>
-                        )}
-                      </div>
-                    </div>
+                <div key={stream.streamId}>
+                  {playingStreamId === stream.streamId ? (
+                    <StreamPlayer
+                      stream={{
+                        streamId: stream.streamId,
+                        name: stream.metadata?.name || stream.streamId,
+                        category: stream.metadata?.category,
+                        publisher: stream.publisher,
+                        metadata: stream.metadata,
+                      }}
+                      onStop={handleStop}
+                    />
+                  ) : (
+                    <div
+                      className="relative bg-base-100 rounded-lg p-4 border border-base-300 hover:border-primary hover:shadow-lg transition-all cursor-pointer group"
+                      onClick={() => handlePlay(stream.streamId)}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex-1 pr-4">
+                          <h3 className="font-semibold text-lg mb-2">{stream.name || stream.streamId}</h3>
 
-                    {/* Stream Info */}
-                    <div className="space-y-2 text-sm">
-                      {stream.metadata?.system_name && (
-                        <div className="flex justify-between">
-                          <span className="text-gray-500">System:</span>
-                          <span className="font-medium">{stream.metadata.system_name}</span>
+                          {/* Category and System */}
+                          <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
+                            {stream.metadata?.category && (
+                              <span className="text-primary font-medium">{stream.metadata.category}</span>
+                            )}
+                            {stream.metadata?.system_name && (
+                              <>
+                                <span>•</span>
+                                <span>{stream.metadata.system_name}</span>
+                              </>
+                            )}
+                          </div>
+
+                          {/* Location */}
+                          {stream.metadata?.location && (
+                            <div className="flex items-center gap-1.5 text-xs text-gray-500 mb-1">
+                              <MapPinIcon className="h-3.5 w-3.5" />
+                              <span>{stream.metadata.location}</span>
+                            </div>
+                          )}
+
+                          {/* Frequency */}
+                          {stream.metadata?.frequency && (
+                            <div className="flex items-center gap-1.5 text-xs text-gray-500 mb-1">
+                              <SignalIcon className="h-3.5 w-3.5" />
+                              <span>{stream.metadata.frequency}</span>
+                            </div>
+                          )}
+
+                          {/* Wallet Balance */}
+                          {stream.metadata?.wallet?.balance && (
+                            <div className="flex items-center gap-1.5 text-xs text-success">
+                              <WalletIcon className="h-3.5 w-3.5" />
+                              <span>{stream.metadata.wallet.balance}</span>
+                            </div>
+                          )}
                         </div>
-                      )}
-                      {stream.metadata?.duration && (
-                        <div className="flex justify-between">
-                          <span className="text-gray-500">Duration:</span>
-                          <span className="font-medium">{stream.metadata.duration}s</span>
-                        </div>
-                      )}
-                      <div className="flex justify-between">
-                        <span className="text-gray-500">Age:</span>
-                        <span className="font-medium">{Math.floor(stream.age / 1000)}s ago</span>
-                      </div>
-                    </div>
 
-                    {/* Publisher Info */}
-                    <div className="mt-3 p-2 bg-base-200 rounded-lg">
-                      <div className="text-xs text-gray-500 mb-1">Publisher:</div>
-                      <div className="font-mono text-xs truncate">{stream.publisher}</div>
-                    </div>
-
-                    {/* Player or Listen Button */}
-                    {playingStreamId === stream.streamId ? (
-                      <div className="mt-4">
-                        <StreamPlayer
-                          stream={{
-                            streamId: stream.streamId,
-                            name: stream.metadata?.name || stream.streamId,
-                            category: stream.metadata?.category,
-                            publisher: stream.publisher,
-                            metadata: stream.metadata,
+                        <button
+                          className="btn btn-circle btn-primary btn-lg group-hover:btn-accent transition-colors"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handlePlay(stream.streamId);
                           }}
-                          onStop={handleStop}
-                        />
-                      </div>
-                    ) : (
-                      <div className="card-actions justify-end mt-4">
-                        <button className="btn btn-primary btn-sm gap-2" onClick={() => handlePlay(stream.streamId)}>
-                          <SignalIcon className="h-4 w-4" />
-                          Listen P2P
+                        >
+                          <PlayIcon className="h-6 w-6" />
                         </button>
                       </div>
-                    )}
-                  </div>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>

@@ -1,8 +1,8 @@
 {
   "local-test": {
     "system_id": "local-test",
-    "total_streams": 5,
-    "total_talkgroups": 5,
+    "total_streams": 12,
+    "total_talkgroups": 12,
     "talkgroups": [
       {
         "num": 1001,
@@ -43,6 +43,62 @@
         "description": "Scaling Protection",
         "tag": "Scaling",
         "category": "Information"
+      },
+      {
+        "num": 2001,
+        "decimal": 2001,
+        "alpha": "PD_MAIN",
+        "description": "Police Main Dispatch",
+        "tag": "Law Dispatch",
+        "category": "Law Enforcement"
+      },
+      {
+        "num": 2002,
+        "decimal": 2002,
+        "alpha": "PD_TAC1",
+        "description": "Police Tactical 1",
+        "tag": "Law Tac",
+        "category": "Law Enforcement"
+      },
+      {
+        "num": 3001,
+        "decimal": 3001,
+        "alpha": "FIRE_MAIN",
+        "description": "Fire Department Main",
+        "tag": "Fire Dispatch",
+        "category": "Fire"
+      },
+      {
+        "num": 3002,
+        "decimal": 3002,
+        "alpha": "FIRE_TAC2",
+        "description": "Fire Operations Tactical 2",
+        "tag": "Fire-Tac",
+        "category": "Fire"
+      },
+      {
+        "num": 4001,
+        "decimal": 4001,
+        "alpha": "EMS_MAIN",
+        "description": "EMS Primary Dispatch",
+        "tag": "EMS Dispatch",
+        "category": "EMS"
+      },
+      {
+        "num": 5001,
+        "decimal": 5001,
+        "alpha": "AIRPORT",
+        "description": "Airport Operations",
+        "tag": "Airport Ops",
+        "category": "Aviation"
+      },
+      {
+        "num": 6001,
+        "decimal": 6001,
+        "alpha": "HIGHWAY",
+        "description": "State Highway Patrol",
+        "tag": "Highway",
+        "category": "Transportation"
       }
     ],
     "streams": [
@@ -215,6 +271,370 @@
           "mode": "simple",
           "created_at": "2025-10-26T12:04:00.000Z"
         }
+      },
+      {
+        "stream_id": "sf-pd-main-dispatch-2001",
+        "name": "San Francisco PD - Main Dispatch",
+        "description": "SF Police Department primary dispatch channel",
+        "audio_url": "http://127.0.0.1:8080/ipfs/QmQWo6HGrp99P5X2J6eSTqdCjiLnu8DJUiSWY9H4FHEbMz",
+        "system_name": "SF Bay Area P25",
+        "talkgroup_id": 2001,
+        "timestamp": "2025-10-29T14:23:10.000Z",
+        "duration": 45,
+        "location": "San Francisco, CA",
+        "coordinates": {
+          "lat": 37.7749,
+          "lon": -122.4194
+        },
+        "frequency": "853.4875 MHz",
+        "filename": "pd-main-dispatch.mp3",
+        "src_list": [
+          {
+            "src": 2001,
+            "pos": 0
+          }
+        ],
+        "metadata": {
+          "star_count": 5,
+          "call_id": "sf-pd-2001-001",
+          "location": "San Francisco, CA",
+          "county": "San Francisco County",
+          "state": "California",
+          "coordinates": {
+            "lat": 37.7749,
+            "lon": -122.4194
+          },
+          "frequency": "853.4875 MHz",
+          "bandwidth": "12.5 kHz",
+          "modulation": "P25 Phase II",
+          "talkgroup_info": {
+            "num": 2001,
+            "alpha": "PD_MAIN",
+            "description": "Police Main Dispatch",
+            "tag": "Law Dispatch",
+            "category": "Law Enforcement"
+          }
+        },
+        "wallet": {
+          "address": "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb5",
+          "contract_address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+          "balance": "2.5 ETH",
+          "rewards_earned": "0.125 ETH",
+          "mode": "rewards",
+          "created_at": "2025-10-29T14:00:00.000Z"
+        }
+      },
+      {
+        "stream_id": "oakland-pd-tactical-2002",
+        "name": "Oakland PD - Tactical 1",
+        "description": "Oakland Police tactical operations channel",
+        "audio_url": "http://127.0.0.1:8080/ipfs/QmPsvugcgfjHWGLW3Ckd5PFT34HC1j2eW9Z4h6WY9ZjmLJ",
+        "system_name": "East Bay P25",
+        "talkgroup_id": 2002,
+        "timestamp": "2025-10-29T14:25:30.000Z",
+        "duration": 60,
+        "filename": "pd-tactical.mp3",
+        "src_list": [
+          {
+            "src": 2002,
+            "pos": 0
+          }
+        ],
+        "metadata": {
+          "star_count": 4,
+          "call_id": "oak-pd-2002-001",
+          "talkgroup_info": {
+            "num": 2002,
+            "alpha": "PD_TAC1",
+            "description": "Police Tactical 1",
+            "tag": "Law Tac",
+            "category": "Law Enforcement"
+          },
+          "location": "Oakland, CA",
+          "county": "Alameda County",
+          "state": "California",
+          "coordinates": {
+            "lat": 37.8044,
+            "lon": -122.2712
+          },
+          "frequency": "854.2625 MHz",
+          "bandwidth": "12.5 kHz",
+          "modulation": "P25 Phase I"
+        },
+        "wallet": {
+          "address": "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
+          "contract_address": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+          "mode": "rewards",
+          "created_at": "2025-10-29T14:05:00.000Z",
+          "balance": "1.8 ETH",
+          "rewards_earned": "0.085 ETH"
+        },
+        "location": "Oakland, CA",
+        "coordinates": {
+          "lat": 37.8044,
+          "lon": -122.2712
+        },
+        "frequency": "854.2625 MHz"
+      },
+      {
+        "stream_id": "sf-fire-main-3001",
+        "name": "SF Fire Department - Main",
+        "description": "San Francisco Fire Department primary channel",
+        "audio_url": "http://127.0.0.1:8080/ipfs/QmSLrtDWuPhMuzoHo33QdvbTT66UmqC4kwMD8UXZdJ35RK",
+        "system_name": "SF Emergency Services",
+        "talkgroup_id": 3001,
+        "timestamp": "2025-10-29T14:28:45.000Z",
+        "duration": 90,
+        "filename": "fire-main.mp3",
+        "src_list": [
+          {
+            "src": 3001,
+            "pos": 0
+          }
+        ],
+        "metadata": {
+          "star_count": 5,
+          "call_id": "sf-fire-3001-001",
+          "talkgroup_info": {
+            "num": 3001,
+            "alpha": "FIRE_MAIN",
+            "description": "Fire Department Main",
+            "tag": "Fire Dispatch",
+            "category": "Fire"
+          },
+          "location": "San Francisco, CA",
+          "county": "San Francisco County",
+          "state": "California",
+          "coordinates": {
+            "lat": 37.7749,
+            "lon": -122.4194
+          },
+          "frequency": "851.0125 MHz",
+          "bandwidth": "25 kHz",
+          "modulation": "P25 Phase II"
+        },
+        "wallet": {
+          "address": "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
+          "contract_address": "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+          "mode": "rewards",
+          "created_at": "2025-10-29T14:10:00.000Z",
+          "balance": "3.2 ETH",
+          "rewards_earned": "0.175 ETH"
+        },
+        "location": "San Francisco, CA",
+        "coordinates": {
+          "lat": 37.7749,
+          "lon": -122.4194
+        },
+        "frequency": "851.0125 MHz"
+      },
+      {
+        "stream_id": "san-jose-fire-tac-3002",
+        "name": "San Jose Fire - Tactical 2",
+        "description": "San Jose Fire operations tactical channel",
+        "audio_url": "http://127.0.0.1:8080/ipfs/QmPFWedBfpcNncHgn5AzhLSyzzhACeeGCWTswjoUqVSRf1",
+        "system_name": "South Bay Regional",
+        "talkgroup_id": 3002,
+        "timestamp": "2025-10-29T14:30:15.000Z",
+        "duration": 75,
+        "filename": "fire-tactical.mp3",
+        "src_list": [
+          {
+            "src": 3002,
+            "pos": 0
+          }
+        ],
+        "metadata": {
+          "star_count": 4,
+          "call_id": "sj-fire-3002-001",
+          "talkgroup_info": {
+            "num": 3002,
+            "alpha": "FIRE_TAC2",
+            "description": "Fire Operations Tactical 2",
+            "tag": "Fire-Tac",
+            "category": "Fire"
+          },
+          "location": "San Jose, CA",
+          "county": "Santa Clara County",
+          "state": "California",
+          "coordinates": {
+            "lat": 37.3382,
+            "lon": -121.8863
+          },
+          "frequency": "851.8375 MHz",
+          "bandwidth": "12.5 kHz",
+          "modulation": "P25 Phase I"
+        },
+        "wallet": {
+          "address": "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb5",
+          "contract_address": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+          "mode": "rewards",
+          "created_at": "2025-10-29T14:15:00.000Z",
+          "balance": "2.1 ETH",
+          "rewards_earned": "0.095 ETH"
+        },
+        "location": "San Jose, CA",
+        "coordinates": {
+          "lat": 37.3382,
+          "lon": -121.8863
+        },
+        "frequency": "851.8375 MHz"
+      },
+      {
+        "stream_id": "bay-area-ems-4001",
+        "name": "Bay Area EMS - Primary Dispatch",
+        "description": "Emergency Medical Services primary dispatch",
+        "audio_url": "http://127.0.0.1:8080/ipfs/QmUdrwJCSPJD9RooDvPA9MM2PRWNWaUBHf5v6MYowHYPuX",
+        "system_name": "Regional EMS Network",
+        "talkgroup_id": 4001,
+        "timestamp": "2025-10-29T14:32:50.000Z",
+        "duration": 65,
+        "filename": "ems-dispatch.mp3",
+        "src_list": [
+          {
+            "src": 4001,
+            "pos": 0
+          }
+        ],
+        "metadata": {
+          "star_count": 5,
+          "call_id": "bay-ems-4001-001",
+          "talkgroup_info": {
+            "num": 4001,
+            "alpha": "EMS_MAIN",
+            "description": "EMS Primary Dispatch",
+            "tag": "EMS Dispatch",
+            "category": "EMS"
+          },
+          "location": "Bay Area Regional",
+          "county": "Multi-County",
+          "state": "California",
+          "coordinates": {
+            "lat": 37.6213,
+            "lon": -122.379
+          },
+          "frequency": "155.340 MHz",
+          "bandwidth": "12.5 kHz",
+          "modulation": "P25 Phase II"
+        },
+        "wallet": {
+          "address": "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
+          "contract_address": "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
+          "mode": "rewards",
+          "created_at": "2025-10-29T14:20:00.000Z",
+          "balance": "2.8 ETH",
+          "rewards_earned": "0.145 ETH"
+        },
+        "location": "Bay Area, CA",
+        "coordinates": {
+          "lat": 37.6213,
+          "lon": -122.379
+        },
+        "frequency": "155.340 MHz"
+      },
+      {
+        "stream_id": "sfo-airport-ops-5001",
+        "name": "SFO Airport Operations",
+        "description": "San Francisco International Airport operations",
+        "audio_url": "http://127.0.0.1:8080/ipfs/QmQWo6HGrp99P5X2J6eSTqdCjiLnu8DJUiSWY9H4FHEbMz",
+        "system_name": "SFO Aviation",
+        "talkgroup_id": 5001,
+        "timestamp": "2025-10-29T14:35:20.000Z",
+        "duration": 45,
+        "filename": "airport-ops.mp3",
+        "src_list": [
+          {
+            "src": 5001,
+            "pos": 0
+          }
+        ],
+        "metadata": {
+          "star_count": 3,
+          "call_id": "sfo-5001-001",
+          "talkgroup_info": {
+            "num": 5001,
+            "alpha": "AIRPORT",
+            "description": "Airport Operations",
+            "tag": "Airport Ops",
+            "category": "Aviation"
+          },
+          "location": "SFO Airport",
+          "county": "San Mateo County",
+          "state": "California",
+          "coordinates": {
+            "lat": 37.6213,
+            "lon": -122.379
+          },
+          "frequency": "462.950 MHz",
+          "bandwidth": "25 kHz",
+          "modulation": "FM Analog"
+        },
+        "wallet": {
+          "address": "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
+          "contract_address": "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",
+          "mode": "simple",
+          "created_at": "2025-10-29T14:25:00.000Z",
+          "balance": "1.5 ETH",
+          "rewards_earned": "0.065 ETH"
+        },
+        "location": "San Francisco International Airport",
+        "coordinates": {
+          "lat": 37.6213,
+          "lon": -122.379
+        },
+        "frequency": "462.950 MHz"
+      },
+      {
+        "stream_id": "chp-highway-patrol-6001",
+        "name": "CHP - Highway Patrol Main",
+        "description": "California Highway Patrol primary channel",
+        "audio_url": "http://127.0.0.1:8080/ipfs/QmPsvugcgfjHWGLW3Ckd5PFT34HC1j2eW9Z4h6WY9ZjmLJ",
+        "system_name": "CHP Golden Gate Division",
+        "talkgroup_id": 6001,
+        "timestamp": "2025-10-29T14:37:40.000Z",
+        "duration": 60,
+        "filename": "highway-patrol.mp3",
+        "src_list": [
+          {
+            "src": 6001,
+            "pos": 0
+          }
+        ],
+        "metadata": {
+          "star_count": 4,
+          "call_id": "chp-6001-001",
+          "talkgroup_info": {
+            "num": 6001,
+            "alpha": "HIGHWAY",
+            "description": "State Highway Patrol",
+            "tag": "Highway",
+            "category": "Transportation"
+          },
+          "location": "Golden Gate Division",
+          "county": "Multi-County",
+          "state": "California",
+          "coordinates": {
+            "lat": 37.9577,
+            "lon": -122.3477
+          },
+          "frequency": "42.46 MHz",
+          "bandwidth": "12.5 kHz",
+          "modulation": "P25 Phase I"
+        },
+        "wallet": {
+          "address": "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb5",
+          "contract_address": "0x0165878A594ca255338adfa4d48449f69242Eb8F",
+          "mode": "rewards",
+          "created_at": "2025-10-29T14:30:00.000Z",
+          "balance": "2.3 ETH",
+          "rewards_earned": "0.110 ETH"
+        },
+        "location": "Golden Gate Division",
+        "coordinates": {
+          "lat": 37.9577,
+          "lon": -122.3477
+        },
+        "frequency": "42.46 MHz"
       }
     ],
     "generated_at": "2025-10-26T13:52:51.537Z"
