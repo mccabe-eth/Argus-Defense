@@ -5,6 +5,7 @@
 
 import { startNode, publishToTopic, getTopicPeers } from './p2pNode.mjs';
 import { StreamDirectory } from './streamDirectory.mjs';
+import { getNodeConfig } from './nodeDetection.mjs';
 import { spawn } from 'child_process';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -35,9 +36,16 @@ export default class StreamPublisher {
       return;
     }
 
+    // Auto-detect environment and configure appropriately
     console.log('🎙️  Starting Stream Publisher...');
+    const config = await getNodeConfig();
+
+    console.log(`   Mode: ${config.mode.toUpperCase()}`);
+
     this.node = await startNode({
-      listen: ['/ip4/0.0.0.0/tcp/9001']
+      listen: config.listen,
+      announce: config.announce,
+      enableRelay: config.enableRelay
     });
 
     // Initialize stream directory
@@ -46,6 +54,7 @@ export default class StreamPublisher {
 
     console.log('✅ Stream Publisher ready!');
     console.log(`📍 Publisher Peer ID: ${this.node.peerId.toString()}`);
+    console.log(`🌍 Node Mode: ${config.mode.toUpperCase()}`);
   }
 
   /**

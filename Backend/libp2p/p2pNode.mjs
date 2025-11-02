@@ -13,6 +13,7 @@ import { gossipsub } from '@chainsafe/libp2p-gossipsub';
 import { bootstrap } from '@libp2p/bootstrap';
 import { identify } from '@libp2p/identify';
 import { kadDHT } from '@libp2p/kad-dht';
+import { circuitRelayTransport } from '@libp2p/circuit-relay-v2';
 import { fromString } from 'uint8arrays/from-string';
 import { multiaddr } from '@multiformats/multiaddr';
 
@@ -41,14 +42,33 @@ export async function createNode(options = {}) {
       ) : [multiaddr(options.listen)])
     : defaultAddrs;
 
+  // Convert announce addresses if provided
+  const announceAddrs = options.announce
+    ? (Array.isArray(options.announce) ? options.announce.map(addr =>
+        typeof addr === 'string' ? multiaddr(addr) : addr
+      ) : [multiaddr(options.announce)])
+    : [];
+
+  // Configure transports based on mode
+  const transports = [
+    tcp(),
+    webSockets()  // WebSocket for browser compatibility
+  ];
+
+  // Add circuit relay for light nodes (NAT traversal)
+  if (options.enableRelay) {
+    console.log('🔄 Enabling circuit relay for NAT traversal...');
+    transports.push(circuitRelayTransport({
+      discoverRelays: 2  // Discover and use 2 relay nodes
+    }));
+  }
+
   const node = await createLibp2p({
     addresses: {
-      listen: listenAddrs
+      listen: listenAddrs,
+      announce: announceAddrs
     },
-    transports: [
-      tcp(),
-      webSockets()  // WebSocket for browser compatibility
-    ],
+    transports,
     connectionEncrypters: [
       noise()
     ],

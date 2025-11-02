@@ -37,6 +37,7 @@ export interface StreamMetadata {
 
 export interface DiscoveredStream {
   streamId: string;
+  name?: string;  // Optional for local API mode
   metadata: StreamMetadata;
   publisher: string;
   lastSeen: number;
